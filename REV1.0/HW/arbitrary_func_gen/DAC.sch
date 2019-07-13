@@ -22,4 +22,6 @@ Text Notes 7375 7500 0    59   ~ 12
 Arbitrary function generator
 Text Notes 7125 6950 0    157  ~ 31
 DAC
+Text Notes 1125 1100 0    79   ~ 16
+Two 16-bit DAC channels
 $EndSCHEMATC

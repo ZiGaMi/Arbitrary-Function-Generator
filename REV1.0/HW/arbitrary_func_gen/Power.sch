@@ -254,7 +254,7 @@ L Device:R_Small R?
 U 1 1 5D2C8A87
 P 8100 2550
 F 0 "R?" H 8159 2596 50  0000 L CNN
-F 1 "0R" H 8159 2505 50  0000 L CNN
+F 1 "150k" H 8159 2505 50  0000 L CNN
 F 2 "" H 8100 2550 50  0001 C CNN
 F 3 "~" H 8100 2550 50  0001 C CNN
 	1    8100 2550
@@ -265,7 +265,7 @@ L Device:R_Small R?
 U 1 1 5D2C9239
 P 8100 2850
 F 0 "R?" H 8159 2896 50  0000 L CNN
-F 1 "0R" H 8159 2805 50  0000 L CNN
+F 1 "150k" H 8159 2805 50  0000 L CNN
 F 2 "" H 8100 2850 50  0001 C CNN
 F 3 "~" H 8100 2850 50  0001 C CNN
 	1    8100 2850
@@ -433,38 +433,38 @@ Connection ~ 8625 2350
 Wire Wire Line
 	8625 2350 8925 2350
 Wire Notes Line width 8 style solid
-	8975 1200 9075 1200
+	9450 1200 9550 1200
 Wire Notes Line width 8 style solid
-	9075 1200 9075 1075
+	9550 1200 9550 1075
 Wire Notes Line width 8 style solid
-	9075 1075 10025 1075
-Text Notes 8750 950  0    79   ~ 16
+	9550 1075 10500 1075
+Text Notes 9225 950  0    79   ~ 16
 Power-up sequence for FPGA
-Text Notes 8800 1175 0    50   ~ 0
+Text Notes 9275 1175 0    50   ~ 10
 1.2V
 Wire Notes Line width 8 style solid
-	8975 1400 9200 1400
+	9450 1400 9675 1400
 Wire Notes Line width 8 style solid
-	9200 1400 9200 1275
+	9675 1400 9675 1275
 Wire Notes Line width 8 style solid
-	9200 1275 10025 1275
-Text Notes 8800 1375 0    50   ~ 0
+	9675 1275 10500 1275
+Text Notes 9275 1375 0    50   ~ 10
 1.2Vpll
 Wire Notes Line width 8 style solid
-	8975 1600 9325 1600
+	9450 1600 9800 1600
 Wire Notes Line width 8 style solid
-	9325 1600 9325 1475
+	9800 1600 9800 1475
 Wire Notes Line width 8 style solid
-	9325 1475 10025 1475
-Text Notes 8800 1575 0    50   ~ 0
+	9800 1475 10500 1475
+Text Notes 9275 1575 0    50   ~ 10
 3.3Vio
 Wire Notes Line width 8 style solid
-	8975 1825 9325 1825
+	9450 1825 9800 1825
 Wire Notes Line width 8 style solid
-	9325 1825 9325 1700
+	9800 1825 9800 1700
 Wire Notes Line width 8 style solid
-	9325 1700 10025 1700
-Text Notes 8800 1800 0    50   ~ 0
+	9800 1700 10500 1700
+Text Notes 9275 1800 0    50   ~ 10
 2.5V
 $Comp
 L power:+1V2 #PWR?
@@ -567,7 +567,7 @@ L Device:R_Small R?
 U 1 1 5D307F16
 P 5975 3975
 F 0 "R?" H 6034 4021 50  0000 L CNN
-F 1 "0R" H 6034 3930 50  0000 L CNN
+F 1 "10k" H 6034 3930 50  0000 L CNN
 F 2 "" H 5975 3975 50  0001 C CNN
 F 3 "~" H 5975 3975 50  0001 C CNN
 	1    5975 3975
@@ -608,7 +608,7 @@ L Device:R_Small R?
 U 1 1 5D307F32
 P 8100 3975
 F 0 "R?" H 8159 4021 50  0000 L CNN
-F 1 "0R" H 8159 3930 50  0000 L CNN
+F 1 "150k" H 8159 3930 50  0000 L CNN
 F 2 "" H 8100 3975 50  0001 C CNN
 F 3 "~" H 8100 3975 50  0001 C CNN
 	1    8100 3975
@@ -619,7 +619,7 @@ L Device:R_Small R?
 U 1 1 5D307F38
 P 8100 4275
 F 0 "R?" H 8159 4321 50  0000 L CNN
-F 1 "0R" H 8159 4230 50  0000 L CNN
+F 1 "47k" H 8159 4230 50  0000 L CNN
 F 2 "" H 8100 4275 50  0001 C CNN
 F 3 "~" H 8100 4275 50  0001 C CNN
 	1    8100 4275
@@ -875,7 +875,7 @@ L Device:R_Small R?
 U 1 1 5D311DFD
 P 5975 5325
 F 0 "R?" H 6034 5371 50  0000 L CNN
-F 1 "0R" H 6034 5280 50  0000 L CNN
+F 1 "10k" H 6034 5280 50  0000 L CNN
 F 2 "" H 5975 5325 50  0001 C CNN
 F 3 "~" H 5975 5325 50  0001 C CNN
 	1    5975 5325
@@ -916,7 +916,7 @@ L Device:R_Small R?
 U 1 1 5D311E19
 P 8100 5325
 F 0 "R?" H 8159 5371 50  0000 L CNN
-F 1 "0R" H 8159 5280 50  0000 L CNN
+F 1 "150k" H 8159 5280 50  0000 L CNN
 F 2 "" H 8100 5325 50  0001 C CNN
 F 3 "~" H 8100 5325 50  0001 C CNN
 	1    8100 5325
@@ -927,7 +927,7 @@ L Device:R_Small R?
 U 1 1 5D311E1F
 P 8100 5625
 F 0 "R?" H 8159 5671 50  0000 L CNN
-F 1 "0R" H 8159 5580 50  0000 L CNN
+F 1 "33k" H 8159 5580 50  0000 L CNN
 F 2 "" H 8100 5625 50  0001 C CNN
 F 3 "~" H 8100 5625 50  0001 C CNN
 	1    8100 5625
@@ -1118,7 +1118,7 @@ F 3 "" H 9575 5125 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Connection ~ 9575 5125
-Text Notes 6225 1775 0    79   ~ 16
+Text Notes 6125 925  0    79   ~ 16
 MCU & FPGA Supply
 $Comp
 L symbols:LN1134 U?
@@ -1333,4 +1333,64 @@ Wire Notes Line
 	3300 6925 3375 6925
 Text Notes 3375 6975 0    50   ~ 10
 Ground connection
+Text Notes 5750 1750 0    50   ~ 10
+Ramp-up (soft start): \n1.2V -> 1.3 V/ms (FPGA: 10 V/ms MAX.)\n2.5V -> 2.6 V/ms\n3.3V -> 3.5 V/ms
+Text Notes 5750 1975 0    50   ~ 10
+Vfb = 0.6V
+Text Notes 10025 5325 0    50   ~ 10
+R2,R1 = 150k, 33k\nVout = 3.32V
+Text Notes 9950 3950 0    50   ~ 10
+R2,R1 = 150k, 47k\nVout = 2.51V
+Text Notes 7125 3025 0    50   ~ 10
+R2,R1 = 150k, 150k\nVout = 1.2V
+Text Notes 6100 4475 0    50   ~ 10
+Tau = 1ms
+Text Notes 6150 5850 0    50   ~ 10
+Tau = 1ms
+Wire Wire Line
+	9575 2350 10100 2350
+$Comp
+L Device:C_Small C?
+U 1 1 5D44AACE
+P 10500 2550
+F 0 "C?" H 10592 2596 50  0000 L CNN
+F 1 "4u7" H 10592 2505 50  0000 L CNN
+F 2 "" H 10500 2550 50  0001 C CNN
+F 3 "~" H 10500 2550 50  0001 C CNN
+	1    10500 2550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10500 2450 10500 2350
+$Comp
+L LOGICchain:GND #PWR?
+U 1 1 5D44AAD5
+P 10500 2725
+F 0 "#PWR?" H 10500 2475 50  0001 C CNN
+F 1 "GND" H 10505 2552 50  0000 C CNN
+F 2 "" H 10500 2725 50  0001 C CNN
+F 3 "" H 10500 2725 50  0001 C CNN
+	1    10500 2725
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10500 2650 10500 2725
+$Comp
+L Device:R_Small R?
+U 1 1 5D44F429
+P 10200 2350
+F 0 "R?" V 10004 2350 50  0000 C CNN
+F 1 "100R" V 10095 2350 50  0000 C CNN
+F 2 "" H 10200 2350 50  0001 C CNN
+F 3 "~" H 10200 2350 50  0001 C CNN
+	1    10200 2350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	10300 2350 10500 2350
+Text GLabel 10750 2350 2    50   BiDi ~ 0
+VPLL
+Wire Wire Line
+	10750 2350 10500 2350
+Connection ~ 10500 2350
 $EndSCHEMATC
