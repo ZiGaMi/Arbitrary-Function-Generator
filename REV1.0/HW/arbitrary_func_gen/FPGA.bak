@@ -1,0 +1,69 @@
+EESchema Schematic File Version 4
+LIBS:arbitrary_func_gen-cache
+EELAYER 29 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 3 5
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text Notes 8125 7650 0    59   ~ 12
+11.07.2019
+Text Notes 10575 7650 0    59   ~ 12
+1.0
+Text Notes 7375 7500 0    59   ~ 12
+Arbitrary function generator
+Text Notes 7100 6925 0    157  ~ 31
+FPGA
+$Comp
+L symbols:IEC5LP1K-QFN48 U1
+U 1 1 5D2778FD
+P 2650 3475
+F 0 "U1" H 2408 5562 60  0000 C CNN
+F 1 "IEC5LP1K-QFN48" H 2408 5456 60  0000 C CNN
+F 2 "" H 2650 3475 60  0001 C CNN
+F 3 "" H 2650 3475 60  0001 C CNN
+	1    2650 3475
+	1    0    0    -1  
+$EndComp
+$Comp
+L symbols:IEC5LP1K-QFN48 U1
+U 2 1 5D27A707
+P 4550 3475
+F 0 "U1" H 4262 5562 60  0000 C CNN
+F 1 "IEC5LP1K-QFN48" H 4262 5456 60  0000 C CNN
+F 2 "" H 4550 3475 60  0001 C CNN
+F 3 "" H 4550 3475 60  0001 C CNN
+	2    4550 3475
+	1    0    0    -1  
+$EndComp
+$Comp
+L symbols:IEC5LP1K-QFN48 U1
+U 3 1 5D27BBB5
+P 6350 2725
+F 0 "U1" H 6108 3912 60  0000 C CNN
+F 1 "IEC5LP1K-QFN48" H 6108 3806 60  0000 C CNN
+F 2 "" H 6350 2725 60  0001 C CNN
+F 3 "" H 6350 2725 60  0001 C CNN
+	3    6350 2725
+	1    0    0    -1  
+$EndComp
+$Comp
+L symbols:IEC5LP1K-QFN48 U1
+U 4 1 5D27D233
+P 8050 2725
+F 0 "U1" H 7808 3912 60  0000 C CNN
+F 1 "IEC5LP1K-QFN48" H 7808 3806 60  0000 C CNN
+F 2 "" H 8050 2725 60  0001 C CNN
+F 3 "" H 8050 2725 60  0001 C CNN
+	4    8050 2725
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
