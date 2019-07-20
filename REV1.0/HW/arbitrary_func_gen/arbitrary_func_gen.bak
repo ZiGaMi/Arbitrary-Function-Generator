@@ -15,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Sheet
-S 7550 3975 1350 725 
+S 4550 3100 1350 725 
 U 5D27693E
 F0 "Power" 50
 F1 "Power.sch" 50
@@ -29,19 +29,19 @@ Text Notes 10550 7650 0    59   ~ 12
 Text Notes 7350 7500 0    59   ~ 12
 Arbitrary function generator
 $Sheet
-S 7575 5150 1350 725 
+S 4575 4275 1350 725 
 U 5D277127
 F0 "FPGA" 50
 F1 "FPGA.sch" 50
 $EndSheet
 $Sheet
-S 9200 5150 1350 725 
+S 6200 4275 1350 725 
 U 5D277181
 F0 "MCU" 50
 F1 "MCU.sch" 50
 $EndSheet
 $Sheet
-S 9175 3975 1350 725 
+S 6175 3100 1350 725 
 U 5D2771CA
 F0 "DAC" 50
 F1 "DAC.sch" 50
@@ -85,7 +85,7 @@ U 1 1 5D2A0B89
 P 1100 2550
 F 0 "C1" H 1300 2500 50  0000 R CNN
 F 1 "1n" H 1300 2625 50  0000 R CNN
-F 2 "" H 1100 2550 50  0001 C CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 1100 2550 50  0001 C CNN
 F 3 "~" H 1100 2550 50  0001 C CNN
 	1    1100 2550
 	-1   0    0    1   
@@ -162,7 +162,7 @@ U 1 1 5D48AE96
 P 1350 4150
 F 0 "H1" H 1450 4199 50  0000 L CNN
 F 1 " " H 1450 4108 50  0000 L CNN
-F 2 "" H 1350 4150 50  0001 C CNN
+F 2 "Mounting_Holes:MountingHole_3.2mm_M3_Pad" H 1350 4150 50  0001 C CNN
 F 3 "~" H 1350 4150 50  0001 C CNN
 	1    1350 4150
 	1    0    0    -1  
@@ -173,7 +173,7 @@ U 1 1 5D48B460
 P 1750 4150
 F 0 "H2" H 1850 4199 50  0000 L CNN
 F 1 " " H 1850 4108 50  0000 L CNN
-F 2 "" H 1750 4150 50  0001 C CNN
+F 2 "Mounting_Holes:MountingHole_3.2mm_M3_Pad" H 1750 4150 50  0001 C CNN
 F 3 "~" H 1750 4150 50  0001 C CNN
 	1    1750 4150
 	1    0    0    -1  
@@ -184,7 +184,7 @@ U 1 1 5D48B691
 P 2150 4150
 F 0 "H3" H 2250 4199 50  0000 L CNN
 F 1 " " H 2250 4108 50  0000 L CNN
-F 2 "" H 2150 4150 50  0001 C CNN
+F 2 "Mounting_Holes:MountingHole_3.2mm_M3_Pad" H 2150 4150 50  0001 C CNN
 F 3 "~" H 2150 4150 50  0001 C CNN
 	1    2150 4150
 	1    0    0    -1  
@@ -195,7 +195,7 @@ U 1 1 5D48B88F
 P 2525 4150
 F 0 "H4" H 2625 4199 50  0000 L CNN
 F 1 " " H 2625 4108 50  0000 L CNN
-F 2 "" H 2525 4150 50  0001 C CNN
+F 2 "Mounting_Holes:MountingHole_3.2mm_M3_Pad" H 2525 4150 50  0001 C CNN
 F 3 "~" H 2525 4150 50  0001 C CNN
 	1    2525 4150
 	1    0    0    -1  
@@ -206,4 +206,36 @@ NoConn ~ 1750 4250
 NoConn ~ 1350 4250
 Text Notes 1450 3725 0    79   ~ 16
 Mounting holes
+$Comp
+L Connector_Generic:Conn_01x01 J5
+U 1 1 5D5600F5
+P 10100 1675
+F 0 "J5" H 10180 1717 50  0000 L CNN
+F 1 "Conn_01x01" H 10180 1626 50  0001 L CNN
+F 2 "" H 10100 1675 50  0001 C CNN
+F 3 "~" H 10100 1675 50  0001 C CNN
+	1    10100 1675
+	1    0    0    -1  
+$EndComp
+Text GLabel 9625 1675 0    50   BiDi ~ 0
+CH1_OUT
+Wire Wire Line
+	9625 1675 9900 1675
+$Comp
+L Connector_Generic:Conn_01x01 J6
+U 1 1 5D56441B
+P 10100 1850
+F 0 "J6" H 10180 1892 50  0000 L CNN
+F 1 "Conn_01x01" H 10180 1801 50  0001 L CNN
+F 2 "" H 10100 1850 50  0001 C CNN
+F 3 "~" H 10100 1850 50  0001 C CNN
+	1    10100 1850
+	1    0    0    -1  
+$EndComp
+Text GLabel 9625 1850 0    50   BiDi ~ 0
+CH2_OUT
+Wire Wire Line
+	9625 1850 9900 1850
+Text Notes 9225 1425 0    79   ~ 16
+Channels output\nconnector (SMA)
 $EndSCHEMATC
