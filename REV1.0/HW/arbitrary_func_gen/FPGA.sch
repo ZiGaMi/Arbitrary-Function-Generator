@@ -157,8 +157,8 @@ Wire Wire Line
 Text Label 8925 1725 2    50   ~ 0
 CLK_25MHZ
 Wire Wire Line
-	1800 3950 2375 3950
-Text Label 2375 3950 2    50   ~ 10
+	1800 3950 2800 3950
+Text Label 2800 3950 2    50   ~ 10
 CLK_25MHZ
 Text Notes 925  4875 0    50   ~ 0
 *bold labels are fixed
@@ -752,10 +752,10 @@ $EndComp
 Text Notes 10775 3450 0    157  ~ 31
 TODO: Check if programming flash is routed OK
 $Comp
-L symbols:iCE40ProgPins J?
+L symbols:iCE40ProgPins J2
 U 1 1 5D566978
 P 8425 5475
-F 0 "J?" H 8100 6262 60  0000 C CNN
+F 0 "J2" H 8100 6262 60  0000 C CNN
 F 1 "iCE40ProgPins" H 8100 6156 60  0000 C CNN
 F 2 "" H 8425 5475 60  0001 C CNN
 F 3 "" H 8425 5475 60  0001 C CNN
@@ -766,10 +766,10 @@ Text Notes 7450 4550 0    79   ~ 16
 Programming header
 NoConn ~ 8625 4975
 $Comp
-L LOGICchain:GND #PWR?
+L LOGICchain:GND #PWR064
 U 1 1 5D56A6F3
 P 8650 5450
-F 0 "#PWR?" H 8650 5200 50  0001 C CNN
+F 0 "#PWR064" H 8650 5200 50  0001 C CNN
 F 1 "GND" H 8655 5277 50  0000 C CNN
 F 2 "" H 8650 5450 50  0001 C CNN
 F 3 "" H 8650 5450 50  0001 C CNN
@@ -790,10 +790,10 @@ Wire Wire Line
 Wire Wire Line
 	8700 5175 8700 4875
 $Comp
-L LOGICchain:+3V3 #PWR?
+L LOGICchain:+3V3 #PWR065
 U 1 1 5D571BD9
 P 8700 4875
-F 0 "#PWR?" H 8700 4725 50  0001 C CNN
+F 0 "#PWR065" H 8700 4725 50  0001 C CNN
 F 1 "+3V3" H 8715 5048 50  0000 C CNN
 F 2 "" H 8700 4875 50  0001 C CNN
 F 3 "" H 8700 4875 50  0001 C CNN
@@ -824,6 +824,60 @@ Text Label 7100 5175 0    50   ~ 0
 FLASH_MOSI
 Text Label 7100 5275 0    50   ~ 0
 FLASH_MISO
-Text Notes 4800 3550 0    79   ~ 16
-TODO: sip pack resistors
+Text GLabel 1800 4250 2    50   BiDi ~ 0
+CH1_BIT_0
+Text GLabel 1800 4150 2    50   BiDi ~ 0
+CH1_BIT_1
+Text GLabel 1800 4050 2    50   BiDi ~ 0
+CH1_BIT_2
+Text GLabel 1800 3850 2    50   BiDi ~ 0
+CH1_BIT_3
+Text GLabel 1800 3750 2    50   BiDi ~ 0
+CH1_BIT_4
+Text GLabel 1800 3650 2    50   BiDi ~ 0
+CH1_BIT_5
+Text GLabel 1800 3550 2    50   BiDi ~ 0
+CH1_BIT_6
+Text GLabel 1800 3450 2    50   BiDi ~ 0
+CH1_BIT_7
+Text GLabel 1800 3350 2    50   BiDi ~ 0
+CH1_BIT_8
+Text GLabel 1800 3250 2    50   BiDi ~ 0
+CH1_BIT_9
+Text GLabel 1800 3150 2    50   BiDi ~ 0
+CH1_BIT_10
+Text GLabel 1800 3050 2    50   BiDi ~ 0
+CH1_BIT_11
+Text GLabel 4250 2075 2    50   BiDi ~ 0
+CH2_BIT_0
+Text GLabel 4250 1975 2    50   BiDi ~ 0
+CH2_BIT_1
+Text GLabel 4250 1875 2    50   BiDi ~ 0
+CH2_BIT_2
+Text GLabel 4250 1775 2    50   BiDi ~ 0
+CH2_BIT_3
+Text GLabel 4250 1675 2    50   BiDi ~ 0
+CH2_BIT_4
+Text GLabel 4250 1575 2    50   BiDi ~ 0
+CH2_BIT_5
+Text GLabel 4250 1475 2    50   BiDi ~ 0
+CH2_BIT_6
+Text GLabel 4250 1375 2    50   BiDi ~ 0
+CH2_BIT_7
+Text GLabel 1800 4650 2    50   BiDi ~ 0
+CH2_BIT_8
+Text GLabel 1800 4550 2    50   BiDi ~ 0
+CH2_BIT_9
+Text GLabel 1800 4450 2    50   BiDi ~ 0
+CH2_BIT_10
+Text GLabel 1800 4350 2    50   BiDi ~ 0
+CH2_BIT_11
+Text GLabel 4275 3175 2    50   BiDi ~ 0
+MCU_SCK
+Text GLabel 4275 3075 2    50   BiDi ~ 0
+MCU_CS
+Text GLabel 4275 3275 2    50   BiDi ~ 0
+MCU_MISO
+Text GLabel 4275 3375 2    50   BiDi ~ 0
+MCU_MOSI
 $EndSCHEMATC
