@@ -824,4 +824,6 @@ Text Label 7100 5175 0    50   ~ 0
 FLASH_MOSI
 Text Label 7100 5275 0    50   ~ 0
 FLASH_MISO
+Text Notes 4800 3550 0    79   ~ 16
+TODO: sip pack resistors
 $EndSCHEMATC

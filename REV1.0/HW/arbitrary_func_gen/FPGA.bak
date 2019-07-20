@@ -533,7 +533,7 @@ Text Notes 7650 1025 0    79   ~ 16
 25 MHz clock
 Text Notes 2425 875  0    118  ~ 24
 FPGA
-Text Notes 7500 2800 0    79   ~ 16
+Text Notes 7500 2950 0    79   ~ 16
 Flash - 4Mbit
 $Comp
 L LOGICchain:GND #PWR058
