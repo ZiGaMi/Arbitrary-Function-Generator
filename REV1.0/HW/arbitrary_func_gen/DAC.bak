@@ -1015,32 +1015,6 @@ Wire Notes Line width 12 style solid
 	7025 6000 10525 6000
 Text Notes 5050 1075 0    157  ~ 31
 12-bit DAC
-$Comp
-L symbols:LT6220 U10
-U 1 1 5D386CD6
-P 4200 2550
-F 0 "U10" H 4400 2750 50  0000 L CNN
-F 1 "LT6220" H 4400 2675 50  0000 L CNN
-F 2 "" H 4200 2550 50  0001 C CNN
-F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/622012fc.pdf" H 4200 2550 50  0001 C CNN
-F 4 "Farnell" H 4200 2550 50  0001 C CNN "Vendor"
-F 5 "2765241" H 4200 2550 50  0001 C CNN "Vendor Number"
-	1    4200 2550
-	1    0    0    -1  
-$EndComp
-$Comp
-L symbols:LT6220 U11
-U 1 1 5D387A5A
-P 9575 2525
-F 0 "U11" H 9750 2750 50  0000 L CNN
-F 1 "LT6220" H 9750 2675 50  0000 L CNN
-F 2 "" H 9575 2525 50  0001 C CNN
-F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/622012fc.pdf" H 9575 2525 50  0001 C CNN
-F 4 "Farnell" H 9575 2525 50  0001 C CNN "Vendor"
-F 5 "2765241" H 9575 2525 50  0001 C CNN "Vendor Number"
-	1    9575 2525
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	4250 2350 4250 1825
 Wire Wire Line
@@ -1142,4 +1116,30 @@ F 3 "" H 9625 2925 50  0001 C CNN
 $EndComp
 Text Notes 4450 3125 0    50   ~ 0
 Iout(max.)=35mA\nGBWP=60MHz
+$Comp
+L symbols:LT6220 U10
+U 1 1 5D3FD3B9
+P 4200 2550
+F 0 "U10" H 4594 2596 50  0000 L CNN
+F 1 "LT6220" H 4594 2505 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23-5_HandSoldering" H 4200 2550 50  0001 C CNN
+F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/622012fc.pdf" H 4200 2550 50  0001 C CNN
+F 4 "Farnell" H 4200 2550 50  0001 C CNN "Vendor"
+F 5 "2765241" H 4200 2550 50  0001 C CNN "Vendor Number"
+	1    4200 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L symbols:LT6220 U11
+U 1 1 5D3FDE2C
+P 9575 2525
+F 0 "U11" H 9969 2571 50  0000 L CNN
+F 1 "LT6220" H 9969 2480 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23-5_HandSoldering" H 9575 2525 50  0001 C CNN
+F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/622012fc.pdf" H 9575 2525 50  0001 C CNN
+F 4 "Farnell" H 9575 2525 50  0001 C CNN "Vendor"
+F 5 "2765241" H 9575 2525 50  0001 C CNN "Vendor Number"
+	1    9575 2525
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

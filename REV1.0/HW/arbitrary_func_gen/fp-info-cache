@@ -1,484 +1,687 @@
-106053074566130
-footprints
-2x5pin-R1.27mm
+1563977910328
+LEDs
+LED-L1T2_LUMILEDS
 
 
 0
-10
-10
-footprints
-7SegmentLCD_10x32
-4 digit 7 segment green LED, http://www.kingbrightusa.com/images/catalog/SPEC/CA56-11GWA.pdf
-4 digit 7 segment green LED
 0
-12
-12
-footprints
-APBA3010SURKCGKC-GX
+0
+LEDs
+LED_1W_3W_R8
+
+
+0
+0
+0
+LEDs
+LED_0402
+
+
+0
+0
+0
+LEDs
+LED_0603
+
+
+0
+0
+0
+LEDs
+LED_0603_HandSoldering
+
+
+0
+0
+0
+LEDs
+LED_0606
+
+
+0
+0
+0
+LEDs
+LED_0805
+
+
+0
+0
+0
+LEDs
+LED_0805_HandSoldering
+
+
+0
+0
+0
+LEDs
+LED_1206
+
+
+0
+0
+0
+LEDs
+LED_1206_HandSoldering
+
+
+0
+0
+0
+LEDs
+LED_BL-FL7680RGB
+
+
+0
+0
+0
+LEDs
+LED_Cree-PLCC4_2x2mm_CW
+
+
+0
+0
+0
+LEDs
+LED_Cree-PLCC4_3.2x2.8mm_CCW
+
+
+0
+0
+0
+LEDs
+LED_Cree-PLCC4_5x5mm_CW
+
+
+0
+0
+0
+LEDs
+LED_Cree-XB
+
+
+0
+0
+0
+LEDs
+LED_Cree-XH
+
+
+0
+0
+0
+LEDs
+LED_Cree-XHP35
+
+
+0
+0
+0
+LEDs
+LED_Cree-XHP50_6V
+
+
+0
+0
+0
+LEDs
+LED_Cree-XHP50_12V
+
+
+0
+0
+0
+LEDs
+LED_Cree-XHP70_6V
+
+
+0
+0
+0
+LEDs
+LED_Cree-XHP70_12V
+
+
+0
+0
+0
+LEDs
+LED_Cree-XP
+
+
+0
+0
+0
+LEDs
+LED_Cree-XP-G
+
+
+0
+0
+0
+LEDs
+LED_Cree-XQ
+
+
+0
+0
+0
+LEDs
+LED_Cree-XQ_HandSoldering
+
+
+0
+0
+0
+LEDs
+LED_D1.8mm_W1.8mm_H2.4mm_Horizontal_O1.27mm_Z1.6mm
+
+
+0
+0
+0
+LEDs
+LED_D1.8mm_W1.8mm_H2.4mm_Horizontal_O1.27mm_Z4.9mm
+
+
+0
+0
+0
+LEDs
+LED_D1.8mm_W1.8mm_H2.4mm_Horizontal_O1.27mm_Z8.2mm
+
+
+0
+0
+0
+LEDs
+LED_D1.8mm_W1.8mm_H2.4mm_Horizontal_O3.81mm_Z1.6mm
+
+
+0
+0
+0
+LEDs
+LED_D1.8mm_W1.8mm_H2.4mm_Horizontal_O3.81mm_Z4.9mm
+
+
+0
+0
+0
+LEDs
+LED_D1.8mm_W1.8mm_H2.4mm_Horizontal_O3.81mm_Z8.2mm
+
+
+0
+0
+0
+LEDs
+LED_D1.8mm_W1.8mm_H2.4mm_Horizontal_O6.35mm_Z1.6mm
+
 
+0
+0
+0
+LEDs
+LED_D1.8mm_W1.8mm_H2.4mm_Horizontal_O6.35mm_Z4.9mm
+
+
+0
+0
+0
+LEDs
+LED_D1.8mm_W1.8mm_H2.4mm_Horizontal_O6.35mm_Z8.2mm
+
+
+0
+0
+0
+LEDs
+LED_D1.8mm_W3.3mm_H2.4mm
+
+
+0
+0
+0
+LEDs
+LED_D2.0mm_W4.0mm_H2.8mm_FlatTop
+
+
+0
+0
+0
+LEDs
+LED_D2.0mm_W4.8mm_H2.5mm_FlatTop
+
+
+0
+0
+0
+LEDs
+LED_D3.0mm
+
+
+0
+0
+0
+LEDs
+LED_D3.0mm-3
+
+
+0
+0
+0
+LEDs
+LED_D3.0mm_FlatTop
 
+
+0
+0
+0
+LEDs
+LED_D3.0mm_Horizontal_O1.27mm_Z2.0mm
+
+
+0
+0
+0
+LEDs
+LED_D3.0mm_Horizontal_O1.27mm_Z6.0mm
+
+
+0
+0
+0
+LEDs
+LED_D3.0mm_Horizontal_O1.27mm_Z10.0mm
+
+
 0
-3
-3
-footprints
-BananaSocket4mm
+0
+0
+LEDs
+LED_D3.0mm_Horizontal_O3.81mm_Z2.0mm
 
 
+0
 0
-1
-1
-footprints
-BatteryConnector_CR2032
+0
+LEDs
+LED_D3.0mm_Horizontal_O3.81mm_Z6.0mm
 
 
+0
 0
-4
-2
-footprints
-Button_6mm_SMD
+0
+LEDs
+LED_D3.0mm_Horizontal_O3.81mm_Z10.0mm
 
 
+0
 0
-4
-2
-footprints
-CERALOCK_3.2x1.3
+0
+LEDs
+LED_D3.0mm_Horizontal_O6.35mm_Z2.0mm
 
 
+0
 0
-3
-3
-footprints
-Coil_1616
+0
+LEDs
+LED_D3.0mm_Horizontal_O6.35mm_Z6.0mm
 
 
+0
+0
 0
-2
-2
-footprints
-Coil_Wurth_10u_2.1A
+LEDs
+LED_D3.0mm_Horizontal_O6.35mm_Z10.0mm
 
 
 0
-2
-2
-footprints
-CON2_R1.27mm
+0
+0
+LEDs
+LED_D4.0mm
 
 
 0
-2
-2
-footprints
-CON4_R1.27mm
+0
+0
+LEDs
+LED_D5.0mm
 
 
+0
 0
-4
-4
-footprints
-CON5_R1.27mm
+0
+LEDs
+LED_D5.0mm-3
 
 
+0
 0
-5
-5
-footprints
-CON_SF_UBL_LEDs
+0
+LEDs
+LED_D5.0mm-4
 
 
+0
+0
 0
-2
-2
-footprints
-CON_SF_UBL_POWER
+LEDs
+LED_D5.0mm_FlatTop
 
 
 0
-4
-4
-footprints
-Crystal_Murata3Pin
+0
+0
+LEDs
+LED_D5.0mm_Horizontal_O1.27mm_Z3.0mm
 
 
+0
+0
 0
-3
-3
-footprints
-DC_link_con_1x2
+LEDs
+LED_D5.0mm_Horizontal_O1.27mm_Z9.0mm
 
 
 0
-2
-2
-footprints
-DC_mot_con_1x2
+0
+0
+LEDs
+LED_D5.0mm_Horizontal_O1.27mm_Z15.0mm
 
 
 0
-2
-2
-footprints
-DIN-7
+0
+0
+LEDs
+LED_D5.0mm_Horizontal_O3.81mm_Z3.0mm
 
 
+0
 0
-9
-8
-footprints
-DIN-8
+0
+LEDs
+LED_D5.0mm_Horizontal_O3.81mm_Z9.0mm
 
 
+0
 0
-10
-9
-footprints
-ESP-WROOM-2
+0
+LEDs
+LED_D5.0mm_Horizontal_O3.81mm_Z15.0mm
 
 
+0
+0
 0
-18
-18
-footprints
-example_soic
+LEDs
+LED_D5.0mm_Horizontal_O6.35mm_Z3.0mm
 
 
 0
-10
-8
-footprints
-Hirose_DM3AT-SF-PEJM5
-Micro SD, SMD, right-angle, push-pull (https://www.hirose.com/product/en/download_file/key_name/DM3AT-SF-PEJM5/category/Drawing%20(2D)/doc_file_id/44099/?file_category_id=6&item_id=06090031000&is_series=)
-Micro SD
 0
-14
-11
-footprints
-Jing_USB_C_2.0_16pin_receptable
+0
+LEDs
+LED_D5.0mm_Horizontal_O6.35mm_Z9.0mm
 
 
+0
 0
-16
-11
-footprints
-KEYSTONE 1042 (SMD)
+0
+LEDs
+LED_D5.0mm_Horizontal_O6.35mm_Z15.0mm
 
 
+0
+0
 0
-2
-2
-footprints
-KEYSTONE_1042_(SMD)
+LEDs
+LED_D8.0mm
 
 
 0
-2
-2
-footprints
-KEYSTONE_1043_THT
+0
+0
+LEDs
+LED_D8.0mm-3
 
 
 0
-2
-2
-footprints
-LGA-12_2x2mm_Pitch0.5mm_My
-LGA12
-lga land grid array
 0
-12
-12
-footprints
-LIS2DW12_LGA14
+0
+LEDs
+LED_D10.0mm
 
 
+0
 0
-14
-14
-footprints
-MeasurementPoint_0.75mm
+0
+LEDs
+LED_D10.0mm-3
 
 
 0
-1
-1
-footprints
-MolexMicroFit3.0_1x02P3.00mm
-Molex Micro-Fit 3.0 Connector System, 43650-0200 (compatible alternatives: 43650-0201, 43650-0202), 2 Pins per row (https://www.molex.com/pdm_docs/sd/436500300_sd.pdf), generated with kicad-footprint-generator
-connector Molex Micro-Fit_3.0 top entry
 0
-2
-2
-footprints
-MolexMicroFit3.0_1x04P3.00mm
-Molex Micro-Fit 3.0 Connector System, 43650-0400 (compatible alternatives: 43650-0401, 43650-0402), 4 Pins per row (https://www.molex.com/pdm_docs/sd/436500300_sd.pdf), generated with kicad-footprint-generator
-connector Molex Micro-Fit_3.0 top entry
 0
-4
-4
-footprints
-MolexMicroFit3_436500512
+LEDs
+LED_D20.0mm
 
 
+0
 0
-7
-7
-footprints
-Molex_MicroFit_3.0-43045-0810_08x3.00mm_Angled_My
-Molex Micro-Fit 3.0 connector, PN:43045-0810, top entry type, SMDhttp://www.molex.com/pdm_docs/sd/430450210_sd.pdf
-conn molex micro fit 3.0
 0
-6
-4
-footprints
-Motor_screw_3mm
+LEDs
+LED_miniPLCC_2315
 
 
 0
-1
-1
-footprints
-MyLogo
+0
+0
+LEDs
+LED_miniPLCC_2315_Handsoldering
 
 
 0
 0
 0
-footprints
-NX1001-04SMS
+LEDs
+LED_Normandled_WS2813-06_5.0x5.0mm_Pitch1.6mm
 
 
+0
 0
-6
-6
-footprints
-PinHeader_1x5_2.54mm_SMD
+0
+LEDs
+LED_Oval_W5.2mm_H3.8mm
 
 
+0
 0
-5
-5
-footprints
-Pin_Header_Straight_1x05_Pitch2.54mm
-Through hole straight pin header, 1x05, 2.54mm pitch, single row
-Through hole pin header THT 1x05 2.54mm single row
 0
-5
-5
-footprints
-PowerFLAT
+LEDs
+LED_PLCC-2
 
 
 0
-30
-6
-footprints
-ProgrammingPin_2x1mm
+0
+0
+LEDs
+LED_PLCC_2835
 
 
+0
 0
-1
-1
-footprints
-QFN-48-1EP_7x7mm_Pitch0.5mm
-UK Package; 48-Lead Plastic QFN (7mm x 7mm); (see Linear Technology QFN_48_05-08-1704.pdf)
-QFN 0.5
 0
-64
-49
-footprints
-QFN-48_EP_7x7_Pitch0.5mm
+LEDs
+LED_PLCC_2835_Handsoldering
 
 
 0
-56
-49
-footprints
-QFN5x5_0.5Pitch
+0
+0
+LEDs
+LED_Rectangular_W3.0mm_H2.0mm
 
 
 0
-33
-33
-footprints
-QFN_15
+0
+0
+LEDs
+LED_Rectangular_W3.9mm_H1.8mm
 
 
+0
 0
-15
-15
-footprints
-QFN_26
+0
+LEDs
+LED_Rectangular_W3.9mm_H1.8mm_FlatTop
 
 
+0
 0
-26
-26
-footprints
-QFP-48_7x7_Pitch0.5mm
+0
+LEDs
+LED_Rectangular_W3.9mm_H1.9mm
 
 
+0
 0
-49
-49
-footprints
-QFP_26
+0
+LEDs
+LED_Rectangular_W5.0mm_H2.0mm
 
 
+0
 0
-26
-26
-footprints
-ResistorNetwork_1206
+0
+LEDs
+LED_Rectangular_W5.0mm_H2.0mm-3pins
 
 
+0
+0
 0
-8
-8
-footprints
-SLIMdrive660S
+LEDs
+LED_Rectangular_W5.0mm_H2.0mm_Horizontal_O1.27mm_Z1.0mm
 
 
 0
-2
-2
-footprints
-SMA_Coaxsial_EdgeBoard_Connector
+0
+0
+LEDs
+LED_Rectangular_W5.0mm_H2.0mm_Horizontal_O1.27mm_Z3.0mm
 
 
 0
-5
-2
-footprints
-SO-8L_Assymetric
+0
+0
+LEDs
+LED_Rectangular_W5.0mm_H2.0mm_Horizontal_O1.27mm_Z5.0mm
 
 
+0
 0
-12
-6
-footprints
-SOD-882
+0
+LEDs
+LED_Rectangular_W5.0mm_H2.0mm_Horizontal_O3.81mm_Z1.0mm
 
 
+0
 0
-2
-2
-footprints
-SOD882
+0
+LEDs
+LED_Rectangular_W5.0mm_H2.0mm_Horizontal_O3.81mm_Z3.0mm
 
 
+0
+0
 0
-2
-2
-footprints
-SOIC-10
+LEDs
+LED_Rectangular_W5.0mm_H2.0mm_Horizontal_O3.81mm_Z5.0mm
 
 
 0
-11
-11
-footprints
-SolderJumper_0805
+0
+0
+LEDs
+LED_Rectangular_W5.0mm_H2.0mm_Horizontal_O6.35mm_Z1.0mm
 
 
 0
-2
-2
-footprints
-SOT-23_Custom
-SOT-23, Standard
-SOT-23
 0
-3
-3
-footprints
-SRN3015_Bourns_inductors
+0
+LEDs
+LED_Rectangular_W5.0mm_H2.0mm_Horizontal_O6.35mm_Z3.0mm
 
 
 0
-2
-2
-footprints
-SW_DIP_x2_W7.62mm_Slide_no3D
-2x-dip-switch, Slide, row spacing 7.62 mm (300 mils)
-DIP Switch Slide 7.62mm 300mil
 0
-4
-4
-footprints
-SW_Tactile_SKHH_AngledMy
-tactile switch 6mm ALPS SKHH right angle http://www.alps.com/prod/info/E/HTML/Tact/SnapIn/SKHH/SKHHLUA010.html
-tactile switch 6mm ALPS SKHH right angle
 0
-4
-2
-footprints
-TentedVia_0.3_0.6
+LEDs
+LED_Rectangular_W5.0mm_H2.0mm_Horizontal_O6.35mm_Z5.0mm
 
 
+0
+0
 0
-1
-1
-footprints
-TentedVia_0.3_0.7
+LEDs
+LED_Rectangular_W5.0mm_H5.0mm
 
 
 0
-1
-1
-footprints
-TestPoint
+0
+0
+LEDs
+LED_RGB_1210
 
 
 0
-1
-1
-footprints
-TSOT23-8
+0
+0
+LEDs
+LED_RGB_5050-6
 
 
+0
 0
-8
-8
-footprints
-uMAX-10
+0
+LEDs
+LED_RGB_Getian_GT-P6PRGB4303
 
 
+0
 0
-11
-11
-footprints
-USBMicro_629105150521_WE
+0
+LEDs
+LED_RGB_PLCC-6
 
 
 0
-11
-7
-footprints
-USB_Micro-B_10103594-0001LF_fixed
-Micro USB Type B 10103594-0001LF
-USB USB_B USB_micro USB_OTG
 0
-17
-6
-footprints
-USB_Micro_USB_Wurth
+0
+LEDs
+LED_SideEmitter_Rectangular_W4.5mm_H1.6mm
 
 
+0
 0
-9
-6
-footprints
-VFQFPN-48_7x7_Pitch0.5mm
+0
+LEDs
+LED_WS2812-PLCC6
 
 
+0
 0
-54
-49
-footprints
-WE-PD_WurthPowerInductor
+0
+LEDs
+LED_WS2812B-PLCC4
 
 
+0
+0
 0
-2
-2
