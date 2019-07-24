@@ -206,36 +206,62 @@ NoConn ~ 1750 4250
 NoConn ~ 1350 4250
 Text Notes 1450 3725 0    79   ~ 16
 Mounting holes
-$Comp
-L Connector_Generic:Conn_01x01 J5
-U 1 1 5D5600F5
-P 10100 1675
-F 0 "J5" H 10180 1717 50  0000 L CNN
-F 1 "Conn_01x01" H 10180 1626 50  0001 L CNN
-F 2 "" H 10100 1675 50  0001 C CNN
-F 3 "~" H 10100 1675 50  0001 C CNN
-	1    10100 1675
-	1    0    0    -1  
-$EndComp
-Text GLabel 9625 1675 0    50   BiDi ~ 0
+Text GLabel 9500 1800 0    50   BiDi ~ 0
 CH1_OUT
 Wire Wire Line
-	9625 1675 9900 1675
-$Comp
-L Connector_Generic:Conn_01x01 J6
-U 1 1 5D56441B
-P 10100 1850
-F 0 "J6" H 10180 1892 50  0000 L CNN
-F 1 "Conn_01x01" H 10180 1801 50  0001 L CNN
-F 2 "" H 10100 1850 50  0001 C CNN
-F 3 "~" H 10100 1850 50  0001 C CNN
-	1    10100 1850
-	1    0    0    -1  
-$EndComp
-Text GLabel 9625 1850 0    50   BiDi ~ 0
+	9500 1800 9775 1800
+Text GLabel 9475 2450 0    50   BiDi ~ 0
 CH2_OUT
-Wire Wire Line
-	9625 1850 9900 1850
 Text Notes 9225 1425 0    79   ~ 16
 Channels output\nconnector (SMA)
+$Comp
+L Connector:Conn_Coaxial J6
+U 1 1 5D389724
+P 9975 1800
+F 0 "J6" H 10075 1775 50  0000 L CNN
+F 1 "SMA-J-P-H-ST-EM1" H 10075 1684 50  0000 L CNN
+F 2 "footprints:SMA_Coaxsial_EdgeBoard_Connector" H 9975 1800 50  0001 C CNN
+F 3 "http://www.farnell.com/datasheets/2607241.pdf" H 9975 1800 50  0001 C CNN
+F 4 "Farnell" H 9975 1800 50  0001 C CNN "Vendor"
+F 5 "2856818" H 9975 1800 50  0001 C CNN "Vendor Number"
+	1    9975 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L LOGICchain:GNDA #PWR091
+U 1 1 5D38CBF1
+P 9975 2000
+F 0 "#PWR091" H 9975 1750 50  0001 C CNN
+F 1 "GNDA" H 9980 1827 50  0000 C CNN
+F 2 "" H 9975 2000 50  0001 C CNN
+F 3 "" H 9975 2000 50  0001 C CNN
+	1    9975 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9475 2450 9750 2450
+$Comp
+L Connector:Conn_Coaxial J5
+U 1 1 5D38E3FF
+P 9950 2450
+F 0 "J5" H 10050 2425 50  0000 L CNN
+F 1 "SMA-J-P-H-ST-EM1" H 10050 2334 50  0000 L CNN
+F 2 "footprints:SMA_Coaxsial_EdgeBoard_Connector" H 9950 2450 50  0001 C CNN
+F 3 "http://www.farnell.com/datasheets/2607241.pdf" H 9950 2450 50  0001 C CNN
+F 4 "Farnell" H 9950 2450 50  0001 C CNN "Vendor"
+F 5 "2856818" H 9950 2450 50  0001 C CNN "Vendor Number"
+	1    9950 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L LOGICchain:GNDA #PWR090
+U 1 1 5D38E405
+P 9950 2650
+F 0 "#PWR090" H 9950 2400 50  0001 C CNN
+F 1 "GNDA" H 9955 2477 50  0000 C CNN
+F 2 "" H 9950 2650 50  0001 C CNN
+F 3 "" H 9950 2650 50  0001 C CNN
+	1    9950 2650
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
