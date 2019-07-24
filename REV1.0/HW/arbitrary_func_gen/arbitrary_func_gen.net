@@ -1,8 +1,8 @@
 (export (version D)
   (design
-    (source C:\Users\ziga.miklosic\Documents\KiCad\Projects\Arbitrary-Function-Generator\REV1.0\HW\arbitrary_func_gen\arbitrary_func_gen.sch)
-    (date "24.07.2019 16:18:39")
-    (tool "Eeschema (5.1.2)-2")
+    (source D:\Projects\Arbitrary-Function-Generator\REV1.0\HW\arbitrary_func_gen\arbitrary_func_gen.sch)
+    (date "24.7.2019 18:49:52")
+    (tool "Eeschema (5.1.2)-1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
         (title)
@@ -427,7 +427,7 @@
       (tstamp 5D33B0CB))
     (comp (ref R2)
       (value 0R)
-      (footprint Resistors_SMD:R_0603_HandSoldering)
+      (footprint Resistors_SMD:R_1206_HandSoldering)
       (datasheet ~)
       (libsource (lib Device) (part R_Small) (description "Resistor, small symbol"))
       (sheetpath (names /Power/) (tstamps /5D27693E/))
@@ -1647,7 +1647,7 @@
     (library (logical Regulator_Switching)
       (uri "C:\\Program Files\\KiCad\\share\\kicad\\library/Regulator_Switching.lib"))
     (library (logical symbols)
-      (uri C:/Users/ziga.miklosic/Documents/KiCad/MyLibs/KiCad-Library/libs/symbols.lib)))
+      (uri C:/Users/ZigaM/Documents/KiCad/Library/KiCad-Library/libs/symbols.lib)))
   (nets
     (net (code 1) (name "Net-(H4-Pad1)")
       (node (ref H4) (pin 1)))
