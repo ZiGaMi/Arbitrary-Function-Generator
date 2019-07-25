@@ -1120,8 +1120,8 @@ $Comp
 L symbols:LT6220 U10
 U 1 1 5D3FD3B9
 P 4200 2550
-F 0 "U10" H 4594 2596 50  0000 L CNN
-F 1 "LT6220" H 4594 2505 50  0000 L CNN
+F 0 "U10" H 4350 2775 50  0000 L CNN
+F 1 "LT6220" H 4375 2675 50  0000 L CNN
 F 2 "TO_SOT_Packages_SMD:SOT-23-5_HandSoldering" H 4200 2550 50  0001 C CNN
 F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/622012fc.pdf" H 4200 2550 50  0001 C CNN
 F 4 "Farnell" H 4200 2550 50  0001 C CNN "Vendor"
@@ -1133,8 +1133,8 @@ $Comp
 L symbols:LT6220 U11
 U 1 1 5D3FDE2C
 P 9575 2525
-F 0 "U11" H 9969 2571 50  0000 L CNN
-F 1 "LT6220" H 9969 2480 50  0000 L CNN
+F 0 "U11" H 9700 2750 50  0000 L CNN
+F 1 "LT6220" H 9725 2675 50  0000 L CNN
 F 2 "TO_SOT_Packages_SMD:SOT-23-5_HandSoldering" H 9575 2525 50  0001 C CNN
 F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/622012fc.pdf" H 9575 2525 50  0001 C CNN
 F 4 "Farnell" H 9575 2525 50  0001 C CNN "Vendor"

@@ -1153,23 +1153,23 @@ Analog Supply
 $Comp
 L LOGICchain:GND #PWR05
 U 1 1 5D3581AF
-P 2325 5600
-F 0 "#PWR05" H 2325 5350 50  0001 C CNN
-F 1 "GND" H 2330 5427 50  0000 C CNN
-F 2 "" H 2325 5600 50  0001 C CNN
-F 3 "" H 2325 5600 50  0001 C CNN
-	1    2325 5600
+P 2300 5500
+F 0 "#PWR05" H 2300 5250 50  0001 C CNN
+F 1 "GND" H 2305 5327 50  0000 C CNN
+F 2 "" H 2300 5500 50  0001 C CNN
+F 3 "" H 2300 5500 50  0001 C CNN
+	1    2300 5500
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GNDA #PWR06
 U 1 1 5D358BF6
-P 3075 5600
-F 0 "#PWR06" H 3075 5350 50  0001 C CNN
-F 1 "GNDA" H 3080 5427 50  0000 C CNN
-F 2 "" H 3075 5600 50  0001 C CNN
-F 3 "" H 3075 5600 50  0001 C CNN
-	1    3075 5600
+P 3050 5500
+F 0 "#PWR06" H 3050 5250 50  0001 C CNN
+F 1 "GNDA" H 3055 5327 50  0000 C CNN
+F 2 "" H 3050 5500 50  0001 C CNN
+F 3 "" H 3050 5500 50  0001 C CNN
+	1    3050 5500
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1186,89 +1186,89 @@ $EndComp
 $Comp
 L Device:R_Small R2
 U 1 1 5D362B5F
-P 2700 5575
-F 0 "R2" V 2504 5575 50  0000 C CNN
-F 1 "0R" V 2595 5575 50  0000 C CNN
-F 2 "Resistors_SMD:R_1206_HandSoldering" H 2700 5575 50  0001 C CNN
-F 3 "~" H 2700 5575 50  0001 C CNN
-	1    2700 5575
+P 2675 5475
+F 0 "R2" V 2479 5475 50  0000 C CNN
+F 1 "0R" V 2570 5475 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206_HandSoldering" H 2675 5475 50  0001 C CNN
+F 3 "~" H 2675 5475 50  0001 C CNN
+	1    2675 5475
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	2600 5575 2325 5575
+	2575 5475 2300 5475
 Wire Wire Line
-	2325 5575 2325 5600
+	2300 5475 2300 5500
 Wire Wire Line
-	2800 5575 3075 5575
+	2775 5475 3050 5475
 Wire Wire Line
-	3075 5575 3075 5600
-Text Notes 1950 4875 0    79   ~ 16
-Analog & Digital \nground connection & filtering
+	3050 5475 3050 5500
+Text Notes 2175 5100 0    79   ~ 16
+Analog & digital \nground connection
 Wire Notes Line width 12 style solid
-	1650 5925 4225 5925
+	1525 6000 4100 6000
 Wire Notes Line width 12 style solid
-	4225 5925 4225 6800
+	4100 6000 4100 6875
 Wire Notes Line width 12 style solid
-	4225 6800 1650 6800
+	4100 6875 1525 6875
 Wire Notes Line width 12 style solid
-	1650 6800 1650 5925
+	1525 6875 1525 6000
 Wire Notes Line style solid
-	1900 6250 1650 6250
+	1775 6325 1525 6325
 Wire Notes Line style solid
-	1650 6525 1900 6525
+	1525 6600 1775 6600
 Wire Notes Line style solid
-	1900 6525 1900 6250
+	1775 6600 1775 6325
 Wire Notes Line style solid
-	1975 6000 1975 6725
+	1850 6075 1850 6800
 Wire Notes Line style solid
-	1975 6725 3325 6725
+	1850 6800 3200 6800
 Wire Notes Line style solid
-	3325 6725 3325 6000
+	3200 6800 3200 6075
 Wire Notes Line style solid
-	3325 6000 1975 6000
+	3200 6075 1850 6075
 Wire Notes Line style solid
-	3400 6000 3400 6725
+	3275 6075 3275 6800
 Wire Notes Line style solid
-	3400 6725 3875 6725
+	3275 6800 3750 6800
 Wire Notes Line style solid
-	3875 6725 3875 6000
+	3750 6800 3750 6075
 Wire Notes Line style solid
-	3875 6000 3400 6000
-Text Notes 3500 6550 0    50   ~ 10
+	3750 6075 3275 6075
+Text Notes 3375 6625 0    50   ~ 10
 Analog\ncircuit\n(output \nopamp)
-Text Notes 2350 6425 0    50   ~ 10
+Text Notes 2225 6500 0    50   ~ 10
 Digital circuit\n(MCU & FPGA)
-Text Notes 1675 6425 0    50   ~ 10
+Text Notes 1550 6500 0    50   ~ 10
 USB
 Wire Notes Line style solid
-	3975 6325 4225 6325
+	3850 6400 4100 6400
 Wire Notes Line style solid
-	4225 6050 3975 6050
+	4100 6125 3850 6125
 Wire Notes Line style solid
-	3975 6050 3975 6325
+	3850 6125 3850 6400
 Wire Notes Line style solid
-	3975 6675 4225 6675
+	3850 6750 4100 6750
 Wire Notes Line style solid
-	4225 6400 3975 6400
+	4100 6475 3850 6475
 Wire Notes Line style solid
-	3975 6400 3975 6675
-Text Notes 4200 6575 2    50   ~ 10
+	3850 6475 3850 6750
+Text Notes 4075 6650 2    50   ~ 10
 CH2
-Text Notes 4200 6225 2    50   ~ 10
+Text Notes 4075 6300 2    50   ~ 10
 CH1
 Wire Notes Line width 8 style solid
-	3300 6625 3300 6675
+	3175 6700 3175 6750
 Wire Notes Line width 8 style solid
-	3300 6675 3425 6675
+	3175 6750 3300 6750
 Wire Notes Line width 8 style solid
-	3425 6675 3425 6625
+	3300 6750 3300 6700
 Wire Notes Line width 8 style solid
-	3425 6625 3300 6625
+	3300 6700 3175 6700
 Wire Notes Line
-	3300 6675 3300 6925
+	3175 6750 3175 7000
 Wire Notes Line
-	3300 6925 3375 6925
-Text Notes 3375 6975 0    50   ~ 10
+	3175 7000 3250 7000
+Text Notes 3250 7050 0    50   ~ 10
 Ground connection
 Text Notes 5750 1750 0    50   ~ 10
 Ramp-up (soft start): \n1.2V -> 1.3 V/ms (FPGA: 10 V/ms MAX.)\n2.5V -> 2.6 V/ms\n3.3V -> 3.5 V/ms
