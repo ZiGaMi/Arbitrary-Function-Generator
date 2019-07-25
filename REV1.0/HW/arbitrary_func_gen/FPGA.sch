@@ -798,59 +798,59 @@ Text Label 7875 5200 0    50   ~ 0
 FLASH_MOSI
 Text Label 7875 5300 0    50   ~ 0
 FLASH_MISO
-Text GLabel 2200 4225 2    50   BiDi ~ 0
-CH1_BIT_0
-Text GLabel 2200 4125 2    50   BiDi ~ 0
-CH1_BIT_1
-Text GLabel 2200 4025 2    50   BiDi ~ 0
-CH1_BIT_2
-Text GLabel 2200 3825 2    50   BiDi ~ 0
-CH1_BIT_3
-Text GLabel 2200 3725 2    50   BiDi ~ 0
-CH1_BIT_4
-Text GLabel 2200 3625 2    50   BiDi ~ 0
-CH1_BIT_5
-Text GLabel 2200 3525 2    50   BiDi ~ 0
-CH1_BIT_6
-Text GLabel 2200 3425 2    50   BiDi ~ 0
-CH1_BIT_7
-Text GLabel 2200 3325 2    50   BiDi ~ 0
-CH1_BIT_8
-Text GLabel 2200 3225 2    50   BiDi ~ 0
-CH1_BIT_9
-Text GLabel 2200 3125 2    50   BiDi ~ 0
-CH1_BIT_10
-Text GLabel 2200 3025 2    50   BiDi ~ 0
-CH1_BIT_11
-Text GLabel 4650 2050 2    50   BiDi ~ 0
-CH2_BIT_0
-Text GLabel 4650 1950 2    50   BiDi ~ 0
-CH2_BIT_1
-Text GLabel 4650 1850 2    50   BiDi ~ 0
-CH2_BIT_2
-Text GLabel 4650 1750 2    50   BiDi ~ 0
-CH2_BIT_3
 Text GLabel 4650 1650 2    50   BiDi ~ 0
-CH2_BIT_4
-Text GLabel 4650 1550 2    50   BiDi ~ 0
-CH2_BIT_5
+CH1_BIT_0
 Text GLabel 4650 1450 2    50   BiDi ~ 0
-CH2_BIT_6
+CH1_BIT_1
 Text GLabel 4650 1350 2    50   BiDi ~ 0
-CH2_BIT_7
-Text GLabel 2200 4625 2    50   BiDi ~ 0
-CH2_BIT_8
-Text GLabel 2200 4525 2    50   BiDi ~ 0
-CH2_BIT_9
-Text GLabel 2200 4425 2    50   BiDi ~ 0
-CH2_BIT_10
+CH1_BIT_2
+Text GLabel 4650 1750 2    50   BiDi ~ 0
+CH1_BIT_3
+Text GLabel 4650 1550 2    50   BiDi ~ 0
+CH1_BIT_4
+Text GLabel 2200 4125 2    50   BiDi ~ 0
+CH1_BIT_5
 Text GLabel 2200 4325 2    50   BiDi ~ 0
-CH2_BIT_11
+CH1_BIT_6
+Text GLabel 2200 4425 2    50   BiDi ~ 0
+CH1_BIT_7
+Text GLabel 2200 4525 2    50   BiDi ~ 0
+CH1_BIT_8
+Text GLabel 2200 4625 2    50   BiDi ~ 0
+CH1_BIT_9
+Text GLabel 2200 4225 2    50   BiDi ~ 0
+CH1_BIT_10
+Text GLabel 2200 3825 2    50   BiDi ~ 0
+CH1_BIT_11
+Text GLabel 2200 3625 2    50   BiDi ~ 0
+CH2_BIT_0
+Text GLabel 2200 3525 2    50   BiDi ~ 0
+CH2_BIT_1
+Text GLabel 2200 3425 2    50   BiDi ~ 0
+CH2_BIT_2
+Text GLabel 2200 3225 2    50   BiDi ~ 0
+CH2_BIT_3
+Text GLabel 2200 3325 2    50   BiDi ~ 0
+CH2_BIT_4
+Text GLabel 2200 3025 2    50   BiDi ~ 0
+CH2_BIT_5
+Text GLabel 2200 3125 2    50   BiDi ~ 0
+CH2_BIT_6
+Text GLabel 4675 3650 2    50   BiDi ~ 0
+CH2_BIT_7
 Text GLabel 4675 3150 2    50   BiDi ~ 0
-MCU_SCK
+CH2_BIT_8
+Text GLabel 4675 3850 2    50   BiDi ~ 0
+CH2_BIT_9
+Text GLabel 4675 3950 2    50   BiDi ~ 0
+CH2_BIT_10
+Text GLabel 4675 3750 2    50   BiDi ~ 0
+CH2_BIT_11
 Text GLabel 4675 3050 2    50   BiDi ~ 0
+MCU_SCK
+Text GLabel 4675 3550 2    50   BiDi ~ 0
 MCU_CS
-Text GLabel 4675 3250 2    50   BiDi ~ 0
+Text GLabel 4675 3450 2    50   BiDi ~ 0
 MCU_MISO
 Text GLabel 4675 3350 2    50   BiDi ~ 0
 MCU_MOSI
@@ -878,4 +878,10 @@ F 3 "" H 2850 7025 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Connection ~ 2850 7025
+NoConn ~ 4675 3250
+NoConn ~ 2200 3725
+NoConn ~ 4650 1850
+NoConn ~ 4650 1950
+NoConn ~ 4650 2050
+NoConn ~ 2200 4025
 $EndSCHEMATC
