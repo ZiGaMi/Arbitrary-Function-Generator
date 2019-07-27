@@ -5,7 +5,7 @@
 //		Function Generator TOP Module
 //
 //	Author:		Ziga M 
-//	Date: 		20.07.2019
+//	Date: 		20.07.2019 
 //
 module FunctionGenerator(
 	sys_clk_i,
