@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source D:\Projects\Arbitrary-Function-Generator\REV1.0\HW\arbitrary_func_gen\arbitrary_func_gen.sch)
-    (date "27.7.2019 11:02:27")
+    (date "27.7.2019 14:31:18")
     (tool "Eeschema (5.1.2)-1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
