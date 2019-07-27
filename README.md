@@ -1,5 +1,5 @@
 # Arbitrary-Function-Generator
-Arbitrary function generator source and design files
+This repository contains of KiCad schematic and layout files, RTL code for FPGA, C code for STM32 and python script for software configuration of function generator.  
 
 ## Description
 
