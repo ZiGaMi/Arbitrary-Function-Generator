@@ -32,7 +32,13 @@ SOFTWARE.
 
 #include "Drivers/ClockDrv.h"
 #include "Drivers/LedDrv.h"
+#include "Drivers/UartDrv.h"
 
+#include "Communication/PcInterface.h"
+
+
+// Reception buffer
+uint8_t rx_buffer[UART_RX_BUF_SIZE];
 
 /**
 **===========================================================================
@@ -48,14 +54,38 @@ int main(void)
 	SysClockInit();
 	SysTickInit();
 	LedInit();
+	UartInit();
+	UartDmaInit(( uint8_t* ) &rx_buffer);
 
 	LED_CH1_on();
+
+	// Previous DMA counter
+	uint32_t dma_counter_prew = ( DMA1_Channel3 -> CNDTR );
+
+	uint8_t * parsedData;
 
 	while(1){
 
 		delay_ms(500);
 		LED_CH1_toggle();
 		LED_CH2_toggle();
+
+
+		// Check for new message and wait until whole msg is transmitted
+		if (( dma_counter_prew != ( DMA1_Channel3 -> CNDTR )) && ( !UART_RX_BUSY_get() )){
+			parsedData = PcInterfaceParseData((uint8_t*) &rx_buffer, UART_RX_BUF_SIZE);
+
+			// Reset DMA counter
+			dma_counter_prew = ( DMA1_Channel3 -> CNDTR );
+
+			// Transmit via DMA
+			UartSendString((uint8_t*) parsedData, (uint32_t) ( *parsedData + 1u ));
+		}
+		else{
+			//UartSendString((uint8_t*) &msg, 10u);
+			UartSendString((uint8_t *) ( "No more messages\n\n" ), 18u);
+		}
+
 	}
 
 }

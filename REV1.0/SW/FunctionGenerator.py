@@ -24,16 +24,16 @@ if __name__ == "__main__":
 	
 	
 	
-	'''
+	
 	while True:
 		
 		#serPort.p_write([0xAA, 0x55, 0x69, 0x96, 0x04, 0x00, 0x01, 0x02, 0x03, ( 0x00 ^0x01 ^ 0x02 ^ 0x03 )])
-		serPort.p_write([0xAA])
+		serPort.p_write([0xAA, 0x55, 0x02, 0x11, 0x22])
 		print( "Writing to port...\n" )
-		print( "Reading from port: %s " % serPort.p_read(1) )
-		time.sleep( 1.0 )
+		print( "Reading from port: %s " % serPort.p_read(100) )
+		time.sleep( 250e-3 )
 		
-	'''
+	
 	
 	
 	
