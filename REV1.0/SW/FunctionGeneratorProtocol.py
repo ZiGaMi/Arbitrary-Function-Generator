@@ -9,6 +9,7 @@ import serial
 import serial.tools.list_ports
 from FunctionGeneratorDefines import FunctionGeneratorDefines
 
+
 Defines = FunctionGeneratorDefines()
 
 # # # Serial COM port class 
@@ -31,10 +32,9 @@ class ComPort:
 	def p_open(self):
 		
 		for port in serial.tools.list_ports.comports():			
-			if ( port.serial_number[1:7] == Defines.COM_SERIAL_NAME ):
+			if ( port.serial_number.find(Defines.COM_SERIAL_NAME) != -1 ):
 				self.port.port = port.device
-				port_serial_number = port.serial_number[1:7]
-		
+				port_serial_number = port.serial_number			
 		
 		# Open port
 		try:
