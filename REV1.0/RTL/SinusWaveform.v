@@ -60,13 +60,11 @@ output [11:0] sw_sine_2_o;
 //
 /////////////////////////////////////////////////
 
-// Waveform clock buffers
-reg clk_1_a;
-reg clk_2_a;
+// LUT counter
+reg [(`SIN_LUT_WIDTH - 1):0] sin_lut_cnt;
 
-// Waveform clock positive edge
-wire clk_1_pos;
-wire clk_2_pos;
+// Sinus LUT
+reg [(`SIN_LUT_WIDTH - 1):0] 
 
 
 /////////////////////////////////////////////////
@@ -76,13 +74,13 @@ wire clk_2_pos;
 /////////////////////////////////////////////////
 
 // Generate positive pulse on waveform clock
-/*always @ (posedge sys_clk_i)
+always @ (posedge sys_clk_i)
 	begin
 		if ( sys_rst_i == `RST_ACT )
 	
 	
 	end
-*/
+
 
 endmodule // module: SinusWaveform
 

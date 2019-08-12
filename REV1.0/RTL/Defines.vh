@@ -1,0 +1,60 @@
+`ifndef _DEFINES_VH_
+`define _DEFINES_VH_
+
+//
+//		Defines.vh
+//
+//	Author:		Ziga M 
+//	Date: 		12.08.2019 
+//
+//
+
+
+/////////////////////////////////////////////////////////
+//	
+//		Reset polarity
+//
+/////////////////////////////////////////////////////////
+`define RST_ACT 			( 1'b0 )
+
+
+
+
+
+/////////////////////////////////////////////////////////
+//	
+//		Waveform Clock Defines
+//
+/////////////////////////////////////////////////////////
+
+// Waveform clock 1 prescaller register size
+`define WC_PSC_1_WIDTH			( 24 )
+
+// Waveform clock 1 prescaller register size
+`define WC_PSC_2_WIDTH			( 24 )
+
+
+
+
+/////////////////////////////////////////////////////////
+//	
+//		Sinus LUT 
+//
+/////////////////////////////////////////////////////////
+
+// Size of LUT
+`define SIN_LUT_SIZE			( 16 )
+
+// Bit width of LUT counter
+`define SIN_LUT_WIDTH			( 4 )
+
+
+
+
+
+`endif // _DEFINES_VH
+
+
+
+
+

@@ -91,15 +91,17 @@ output [11:0] dds_ch2_o;
 //
 /////////////////////////////////////////////////
 
+
+// NOTE: Check what to do with if PSC = 0 or PSC = 1 !!!!
 WaveformClock WC_inst(
 	.sys_clk_i					( sys_clk_i ),
 	.sys_rst_i					( sys_rst_i ),
 
 	.wc_en_i					( 1'b1 ),
-	.wc_psc_1_i					( 24'd40 ),
-	.wc_psc_2_i					( 24'd20 ),
-	.wc_clk_1_o					(  ),
-	.wc_clk_2_o					(  )
+	.wc_psc_1_i					( 24'd1 ),
+	.wc_psc_2_i					( 24'd2 ),
+	.wc_clk_p_1_o				( ),
+	.wc_clk_p_2_o				(  )
 );
 
 
