@@ -15,7 +15,8 @@ module SinusWaveform(
 	sys_clk_i,
 	//sys_rst_i,
 	
-	sw_en_i,
+	sw_en_1_i,
+	sw_en_2_i,
 	sw_clk_1_i,
 	sw_clk_2_i,
 	sw_sine_1_o,
@@ -35,8 +36,11 @@ input sys_clk_i;
 // System reset input
 //input sys_rst_i;
 
-// Generation enable input
-input sw_en_i;
+// Sine generation 1 enable input
+input sw_en_1_i;
+
+// Sine generation 2 enable input
+input sw_en_2_i;
 
 // Waveform clock 1 input
 input sw_clk_1_i;
@@ -45,11 +49,10 @@ input sw_clk_1_i;
 input sw_clk_2_i; 
 
 // Waveform 1 output
-output [11:0] sw_sine_1_o;
+output [(`DAC_RES_WIDTH - 1):0] sw_sine_1_o;
 
 // Waveform 2 output
-output [11:0] sw_sine_2_o;
-
+output [(`DAC_RES_WIDTH - 1):0] sw_sine_2_o;
 
 
 
@@ -61,10 +64,13 @@ output [11:0] sw_sine_2_o;
 /////////////////////////////////////////////////
 
 // LUT counter
-reg [(`SIN_LUT_WIDTH - 1):0] sin_lut_cnt;
+reg [(`SIN_LUT_WIDTH - 1):0] sin_lut_cnt_1;
+reg [(`SIN_LUT_WIDTH - 1):0] sin_lut_cnt_2;
 
 // Sinus LUT
-reg [(`SIN_LUT_WIDTH - 1):0] 
+reg [(`DAC_RES_WIDTH - 1):0] sin_lut [(`SIN_LUT_WIDTH - 1):0];
+
+
 
 
 /////////////////////////////////////////////////
@@ -73,12 +79,30 @@ reg [(`SIN_LUT_WIDTH - 1):0]
 //
 /////////////////////////////////////////////////
 
+
+// Sinus output
+assign sw_sine_1_o = ( sw_en_1_i ) ? ( sin_lut[sin_lut_cnt_1] ) : ( (`DAC_RES_WIDTH)'hZ );
+assign sw_sine_2_o = ( sw_en_2_i ) ? ( sin_lut[sin_lut_cnt_2] ) : ( (`DAC_RES_WIDTH)'hZ );
+
+
 // Generate positive pulse on waveform clock
 always @ (posedge sys_clk_i)
 	begin
-		if ( sys_rst_i == `RST_ACT )
-	
-	
+		if ( sys_rst_i == `RST_ACT ) begin
+			sin_lut_cnt_1 <= 0;
+			sin_lut_cnt_2 <= 0;
+		end
+		
+		// Move through sinus LUT
+		else begin
+			if ( sw_clk_1_i ) begin
+				sin_lut_cnt_1 	<= sin_lut_cnt_1 + 1'b1;
+			end
+			
+			if ( sw_clk_2_i ) begin
+				sin_lut_cnt_2 	<= sin_lut_cnt_2 + 1'b1;				
+			end
+		end
 	end
 
 
