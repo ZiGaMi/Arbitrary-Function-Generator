@@ -37,7 +37,9 @@ SOFTWARE.
 #include "Communication/PcInterface.h"
 
 
-// Reception buffer
+
+
+// UART Reception buffer
 uint8_t rx_buffer[UART_RX_BUF_SIZE];
 
 
@@ -78,13 +80,12 @@ int main(void)
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		if ( pcData.newDataAvailable ){
-			pcData.newDataAvailable = false;
-
-			UartSendBuffer(pcData.data, pcData.data[0] + 1u);
+			PcInterfaceApplyCommand((PcInterfaceDataTypeDef*) &pcData);
 		}
 
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 
@@ -103,8 +104,9 @@ int main(void)
 		if ( PcInterfaceGetRxBufCheckTimeoutFlag() ){
 
 			if ( UartGetRxBufferNewDataFlag() ){
-				pcData.data = PcInterfaceParseData((uint8_t*) &rx_buffer, UART_RX_BUF_SIZE);
-				pcData.newDataAvailable = true;
+				pcData.data 				= PcInterfaceParseData((uint8_t*) &rx_buffer, UART_RX_BUF_SIZE);
+				pcData.crcOK 				= PcInterfaceGetCrcCheckFlag((uint8_t*) pcData.data);
+				pcData.newDataAvailable 	= true;
 			}
 		}
 

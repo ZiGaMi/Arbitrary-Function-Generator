@@ -55,8 +55,9 @@
 
 typedef struct{
 
-	bool newDataAvailable;				// New data in buffer flag
+	bool 	newDataAvailable;			// New data in buffer flag
 	uint8_t *data;						// Buffer of parsed data
+	bool	crcOK;						// Data packet error check flag
 }PcInterfaceDataTypeDef;
 
 
@@ -74,6 +75,12 @@ uint8_t *PcInterfaceParseData(uint8_t*, uint8_t);
 
 // Check reception buffer check timeout flag
 bool PcInterfaceGetRxBufCheckTimeoutFlag(void);
+
+// Check CRC
+bool PcInterfaceGetCrcCheckFlag(uint8_t*);
+
+// Apply command from PC
+void PcInterfaceApplyCommand(PcInterfaceDataTypeDef*);
 
 
 

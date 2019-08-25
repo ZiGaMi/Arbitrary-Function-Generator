@@ -32,12 +32,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-#define LED_CH1_on()				( LED_PORT -> ODR |= ( LED_CH1_msk ))
-#define LED_CH1_off()				( LED_PORT -> ODR &= ~( LED_CH1_msk ))
+#define LED_CH1_off()				( LED_PORT -> ODR |= ( LED_CH1_msk ))
+#define LED_CH1_on()				( LED_PORT -> ODR &= ~( LED_CH1_msk ))
 #define LED_CH1_toggle()			( LED_PORT -> ODR ^= ( LED_CH1_msk ))
 
-#define LED_CH2_on()				( LED_PORT -> ODR |= ( LED_CH2_msk ))
-#define LED_CH2_off()				( LED_PORT -> ODR &= ~( LED_CH2_msk ))
+#define LED_CH2_off()				( LED_PORT -> ODR |= ( LED_CH2_msk ))
+#define LED_CH2_on()				( LED_PORT -> ODR &= ~( LED_CH2_msk ))
 #define LED_CH2_toggle()			( LED_PORT -> ODR ^= ( LED_CH2_msk ))
 
 

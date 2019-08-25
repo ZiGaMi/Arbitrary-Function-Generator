@@ -95,5 +95,39 @@ bool PcInterfaceGetRxBufCheckTimeoutFlag(){
 }
 
 
+// Check CRC
+bool PcInterfaceGetCrcCheckFlag(uint8_t *buf){
+
+	// Get send crc
+	uint8_t crc = buf[ buf[0] ];
+
+	// Calculate crc
+	uint8_t crc_calc = 0u;
+	for ( uint8_t i = 1u; i < buf[0]; i++ ){
+		crc_calc ^= buf[i];
+	}
+
+	return ( bool ) ( crc == crc_calc );
+}
+
+// Apply command from PC
+void PcInterfaceApplyCommand(PcInterfaceDataTypeDef *data){
+
+	// Check if CRC is OK
+	if ( data -> crcOK ){
+
+		// TODO: To be defined
+		switch( ( data -> data )[1]  ){
+
+			case 0x00u:
+				break;
+
+			default:
+				break;
+		}
+	}
+
+	data -> newDataAvailable = false;
+}
 
 
