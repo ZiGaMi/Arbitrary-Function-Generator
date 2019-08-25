@@ -50,7 +50,7 @@
 #define UART_BAUDRATE			( 115200u )
 
 // Reception buffer size
-#define UART_RX_BUF_SIZE		( 100u )
+#define UART_RX_BUF_SIZE		( 50u )
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-#define UART_RX_BUSY_get()		( bool ) (( UART -> ISR & USART_ISR_BUSY ) == USART_ISR_BUSY )
+// Check if reception is in progress
+#define UART_RX_BUSY_get()			( bool ) (( UART -> ISR & USART_ISR_BUSY ) == USART_ISR_BUSY )
 
 
 
@@ -71,13 +72,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // Initialize uart
-void 	UartInit				(void);
+void UartInit(void);
 
 // Initialize uart DMA
-void 	UartDmaInit				(uint8_t*);
+void UartDmaInit(uint8_t*);
 
 // Send packet
-void	UartSendString			(uint8_t*, uint32_t);
+void UartSendBuffer(uint8_t*, uint32_t);
 
+// Check for new data in reception buffer
+bool UartGetRxBufferNewDataFlag(void);
 
 #endif /* DRIVERS_UARTDRV_H_ */

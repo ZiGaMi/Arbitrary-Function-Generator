@@ -9,6 +9,7 @@
 #include "Communication/PcInterface.h"
 
 
+
 // Make copy of reception buffer
 static void bufferCopy(uint8_t *dest, uint8_t *src, uint8_t size){
 	for ( uint8_t i = 0u; i < size; i++ ){
@@ -72,3 +73,27 @@ uint8_t *PcInterfaceParseData(uint8_t *rx_buffer, uint8_t size){
 		return NULL;
 	}
 }
+
+
+
+// Check reception buffer check timeout flag
+bool PcInterfaceGetRxBufCheckTimeoutFlag(){
+
+	static uint16_t sys_clk = 0u;
+
+	if (( SysGetTick() > sys_clk ) && ( ( SysGetTick() - sys_clk ) >= P_CHECK_TIM_time  ) ){
+		sys_clk = SysGetTick();
+		return true;
+	}
+	else if (( SysGetTick() < sys_clk ) && ( ( 0x10000u - sys_clk + SysGetTick() ) >= P_CHECK_TIM_time )) {
+		sys_clk = SysGetTick();
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+
+
+

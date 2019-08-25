@@ -112,7 +112,7 @@ void UartDmaInit(uint8_t *rx_buffer){
 
 
 // Send packet
-void UartSendString(uint8_t *tx_buf, uint32_t size){
+void UartSendBuffer(uint8_t *tx_buf, uint32_t size){
 
 	// Disable DMA channel
 	DMA1_Channel2 -> CCR &= ~( DMA_CCR_EN );
@@ -126,3 +126,22 @@ void UartSendString(uint8_t *tx_buf, uint32_t size){
 	// Enable channel
 	DMA1_Channel2 -> CCR |= ( DMA_CCR_EN );
 }
+
+
+//uint32_t dma_counter_prew = ( DMA1_Channel3 -> CNDTR );
+
+// Check for new data in reception buffer
+bool UartGetRxBufferNewDataFlag(){
+
+	// Previous DMA counter
+	static uint16_t dma_counter_prew = UART_RX_BUF_SIZE;
+
+	if (( dma_counter_prew != ( DMA1_Channel3 -> CNDTR )) && ( !UART_RX_BUSY_get())){
+		dma_counter_prew = ( DMA1_Channel3 -> CNDTR );
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
