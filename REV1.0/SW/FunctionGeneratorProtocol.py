@@ -39,7 +39,8 @@ class ComPort:
 		# Open port
 		try:
 			self.port.open()
-			print( "%s (%s) successfully open..." % (self.port.name, port_serial_number))
+			#print( "%s (%s) successfully open..." % (self.port.name, port_serial_number))
+			return self.port.name, port_serial_number
 		except Exception as e:
 			print( e )
 			
@@ -65,6 +66,14 @@ class ComPort:
 # # # Protocol description
 # # # In here protocol packets are defines and process
 class Protocol:
-	pass
+	
+	
+	def sendPacket(self):
+		pass
+		
+		
+		
+		
+		
 	
 	

@@ -6,11 +6,28 @@
 # # #
 
 import os
+import sys
 import time
 from FunctionGeneratorProtocol import ComPort
+from FunctionGeneratorDefines import FunctionGeneratorDefines
 
 
+Defines = FunctionGeneratorDefines()
 
+# # # Intro 
+def cliIntro(p, s):
+	print("////////////////////////////////////////////////////////////////")
+	print("//")
+	print("//		Function Generator Rev1.0")
+	print("//")
+	print("//")
+	print("//")
+	print("//  COM port: %s (%s)" % ( p, s))
+	print("//  FW version: 0.0")
+	print("//  SoC version: 0.0")
+	print("//")
+	print("////////////////////////////////////////////////////////////////")
+	print("")
 
 
 if __name__ == "__main__":
@@ -20,25 +37,49 @@ if __name__ == "__main__":
 
 	# Serial Port
 	serPort = ComPort()
-	serPort.p_open()
+	port, ser_num = serPort.p_open()
 	
-	
+	# CLI intro
+	cliIntro(port, ser_num)
 	
 	
 	while True:
 		
-		
-		#serPort.p_write([0xAA, 0x55, 0x05, 0x00, 0x01, 0x02, 0x03, ( 0x00 ^0x01 ^ 0x02 ^ 0x03 )])
-		serPort.p_write([0xAA, 0x55, 0x03, 0x1F, 0x22, ( 0x1F ^ 0x22 )])
-		print( "Writing to port...\n" )
-		print( "Reading from port: %s " % serPort.p_read(100) )
-		time.sleep( 250e-3 )
-		
+		cmd = input("<FUNGEN>")
 	
-	
+		if cmd == Defines.CLI_QUIT_cmd:
+			sys.exit()
+			
+		elif cmd == Defines.CLI_HELP_cmd:
+			print("Help menu")
+			
+		elif cmd == Defines.CLI_INFO_cmd:
+			print("Getting info...")
+			
+		elif cmd[:3] == "set":
+			if cmd[4:8] == "sine":
+				pass
+			elif cmd[4:8] == "sqrt":
+				pass
+			elif cmd[4:8] == "rect":
+				pass
+			elif cmd[4:7] == "saw":
+				pass
+				
+		else:
+			print("Unknown command... (enter >help< )")
 	
 	
 	# Close port
 	serPort.p_close()
+	
+	
+	
+	
+	
+
+	
+	
+	
 	
 	
