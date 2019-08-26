@@ -26,13 +26,18 @@
 // Header		0xAA55
 // Length		0x..
 // Data			length bytes
-// CRC			0x..
+
+// CRC			0x..			( CRC includes length)
 
 #define PROTOCOL_HEADER				( uint8_t* ) 	( "\xAA\x55" )
 #define PROTOCOL_HEADER_size		( uint8_t )		( 2u )			// bytes
 
 
-
+// Waveform code
+#define P_WAVEFORM_CODE_SINE		( uint8_t )		( 0xC0u )
+#define P_WAVEFORM_CODE_SQRT		( uint8_t )		( 0xC1u )
+#define P_WAVEFORM_CODE_RECT		( uint8_t )		( 0xC2u )
+#define P_WAVEFORM_CODE_SAW			( uint8_t )		( 0xC3u )
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +47,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // Checking reception buffer time
-#define P_CHECK_TIM_time			( uint16_t ) ( 50u )		// ms
+#define P_CHECK_TIM_time			( uint16_t ) ( 100u )		// ms
 
 
 
@@ -55,9 +60,9 @@
 
 typedef struct{
 
-	bool 	newDataAvailable;			// New data in buffer flag
-	uint8_t *data;						// Buffer of parsed data
-	bool	crcOK;						// Data packet error check flag
+	uint8_t		newDataAvailable;			// New data in buffer flag
+	uint8_t 	*data;						// Buffer of parsed data
+	uint8_t 	crcOK;						// Data packet error check flag
 }PcInterfaceDataTypeDef;
 
 

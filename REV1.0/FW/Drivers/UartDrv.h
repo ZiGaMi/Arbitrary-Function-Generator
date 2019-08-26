@@ -50,7 +50,7 @@
 #define UART_BAUDRATE			( 115200u )
 
 // Reception buffer size
-#define UART_RX_BUF_SIZE		( 50u )
+#define UART_RX_BUF_SIZE		( 20u )
 
 
 ////////////////////////////////////////////////////////////////////////////////

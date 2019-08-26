@@ -58,14 +58,18 @@ if __name__ == "__main__":
 			
 		elif cmd[:3] == "set":
 			if cmd[4:8] == "sine":
-				pass
+				serPort.p_write([0xAA, 0x55, 0x05, Defines.WAVE_SINE_code, 0x00, 0x00, 0x10, ( 0x05 ^ Defines.WAVE_SINE_code ^ 0x10 )])
 			elif cmd[4:8] == "sqrt":
-				pass
+				serPort.p_write([0xAA, 0x55, 0x05, Defines.WAVE_SQRT_code, 0x00, 0x00, 0x10, ( 0x05 ^ Defines.WAVE_SQRT_code ^ 0x10 )])
 			elif cmd[4:8] == "rect":
-				pass
+				serPort.p_write([0xAA, 0x55, 0x05, Defines.WAVE_RECT_code, 0x00, 0x00, 0x10, ( 0x05 ^ Defines.WAVE_RECT_code ^ 0x10 )])
 			elif cmd[4:7] == "saw":
-				pass
+				serPort.p_write([0xAA, 0x55, 0x05, Defines.WAVE_SAW_code, 0x00, 0x00, 0x10, ( 0x05 ^ Defines.WAVE_SAW_code ^ 0x10 )])
 				
+			#print("RX buffer: %s" % serPort.p_read(20))	
+			print("Working buffer: %s" % serPort.p_read(20))	
+			#print("Parsed data: %s" % serPort.p_read(20))	
+			
 		else:
 			print("Unknown command... (enter >help< )")
 	

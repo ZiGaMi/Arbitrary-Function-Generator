@@ -18,6 +18,7 @@ static void bufferCopy(uint8_t *dest, uint8_t *src, uint8_t size){
 }
 
 
+
 // Find header
 // Returns index position at start of header
 static uint8_t getHeaderIndex(uint8_t *buf, uint8_t b_size, uint8_t *header, uint8_t h_size){
@@ -40,19 +41,36 @@ static uint8_t getHeaderIndex(uint8_t *buf, uint8_t b_size, uint8_t *header, uin
 	return h_pos;
 }
 
+//uint8_t data[UART_RX_BUF_SIZE];
 
 // Parse data
 // Arguments: input buffer, size of input buffer
 uint8_t *PcInterfaceParseData(uint8_t *rx_buffer, uint8_t size){
 
 	static uint8_t data[UART_RX_BUF_SIZE];
-	uint8_t rx_working_buffer[UART_RX_BUF_SIZE];
+	static uint8_t rx_working_buffer[UART_RX_BUF_SIZE];
 
 	// Make a working copy
-	bufferCopy((uint8_t*) &rx_working_buffer, (uint8_t*) rx_buffer, size);
+	bufferCopy((uint8_t*) &rx_working_buffer[0], (uint8_t*) rx_buffer, size);
+	//memcpy(&rx_working_buffer, rx_buffer, size);
+
+
+
+
+	// DEBUGGING
+	// TODO: Rx_buffer is OK -> Check what is going on with rx_working buffer
+	//UartSendBuffer((uint8_t*)&rx_buffer[0], UART_RX_BUF_SIZE);
+	//UartSendBuffer((uint8_t*)&rx_working_buffer[0], UART_RX_BUF_SIZE);
+
 
 	// Get header index
-	uint8_t len_idx = getHeaderIndex((uint8_t*) rx_working_buffer, size, PROTOCOL_HEADER, PROTOCOL_HEADER_size);
+	uint8_t len_idx = getHeaderIndex((uint8_t*) &rx_working_buffer, size, PROTOCOL_HEADER, PROTOCOL_HEADER_size);
+
+	// Clear data
+	/*for ( uint8_t i = 0; i < UART_RX_BUF_SIZE; i++ ){
+		data[i] = 0u;
+	}
+	*/
 
 	// Header detected
 	if ( len_idx != size ){
@@ -67,6 +85,7 @@ uint8_t *PcInterfaceParseData(uint8_t *rx_buffer, uint8_t size){
 			data[( idx % size )] = rx_working_buffer[(( idx + len_idx ) % size )];
 			idx++;
 		}
+		UartSendBuffer((uint8_t*) &data, UART_RX_BUF_SIZE);
 		return (uint8_t*) ( &data );
 	}
 	else{
@@ -103,31 +122,13 @@ bool PcInterfaceGetCrcCheckFlag(uint8_t *buf){
 
 	// Calculate crc
 	uint8_t crc_calc = 0u;
-	for ( uint8_t i = 1u; i < buf[0]; i++ ){
+	for ( uint8_t i = 0; i < buf[0]; i++ ){
 		crc_calc ^= buf[i];
 	}
 
 	return ( bool ) ( crc == crc_calc );
 }
 
-// Apply command from PC
-void PcInterfaceApplyCommand(PcInterfaceDataTypeDef *data){
 
-	// Check if CRC is OK
-	if ( data -> crcOK ){
-
-		// TODO: To be defined
-		switch( ( data -> data )[1]  ){
-
-			case 0x00u:
-				break;
-
-			default:
-				break;
-		}
-	}
-
-	data -> newDataAvailable = false;
-}
 
 

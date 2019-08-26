@@ -67,7 +67,7 @@ int main(void)
 	UartDmaInit(( uint8_t* ) &rx_buffer);
 
 
-
+	uint8_t *parsedData;
 
 	while(1){
 
@@ -80,7 +80,13 @@ int main(void)
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		if ( pcData.newDataAvailable ){
-			PcInterfaceApplyCommand((PcInterfaceDataTypeDef*) &pcData);
+			pcData.newDataAvailable = false;
+
+/*			if ( pcData.crcOK ){
+				UartSendBuffer(pcData.data, 50u);
+			}
+*/
+		//	UartSendBuffer(parsedData, UART_RX_BUF_SIZE);
 		}
 
 
@@ -104,7 +110,8 @@ int main(void)
 		if ( PcInterfaceGetRxBufCheckTimeoutFlag() ){
 
 			if ( UartGetRxBufferNewDataFlag() ){
-				pcData.data 				= PcInterfaceParseData((uint8_t*) &rx_buffer, UART_RX_BUF_SIZE);
+//				pcData.data 				= PcInterfaceParseData((uint8_t*) &rx_buffer, UART_RX_BUF_SIZE);
+				parsedData	 				= PcInterfaceParseData((uint8_t*) &rx_buffer, UART_RX_BUF_SIZE);
 				pcData.crcOK 				= PcInterfaceGetCrcCheckFlag((uint8_t*) pcData.data);
 				pcData.newDataAvailable 	= true;
 			}

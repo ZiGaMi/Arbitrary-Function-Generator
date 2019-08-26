@@ -19,14 +19,14 @@ class FunctionGeneratorDefines:
 	COM_BAUDRATE		= 115200
 	
 	# Timeout
-	COM_TIMEOUT			= 0.100	# s
+	COM_TIMEOUT			= 0.250	# s
 	
 	
 	
 	# # # Protocol defines
 	
 	# Header 
-	PROT_HEADER					= "\xAA\x55"
+	PROT_HEADER					= 0xAA55
 	PROT_HEADER_bp				= 0
 	PROT_HEADER_size			= 2
 	PROT_HEADER_msk				= ( 0xFFFF << PROT_HEADER_bp )
