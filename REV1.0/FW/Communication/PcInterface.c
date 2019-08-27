@@ -96,26 +96,26 @@ uint8_t *PcInterfaceParseData(uint8_t *rx_buffer, uint8_t size){
 
 
 // Check reception buffer check timeout flag
-bool PcInterfaceGetRxBufCheckTimeoutFlag(){
+uint8_t PcInterfaceGetRxBufCheckTimeoutFlag(){
 
 	static uint16_t sys_clk = 0u;
 
 	if (( SysGetTick() > sys_clk ) && ( ( SysGetTick() - sys_clk ) >= P_CHECK_TIM_time  ) ){
 		sys_clk = SysGetTick();
-		return true;
+		return 1;
 	}
 	else if (( SysGetTick() < sys_clk ) && ( ( 0x10000u - sys_clk + SysGetTick() ) >= P_CHECK_TIM_time )) {
 		sys_clk = SysGetTick();
-		return true;
+		return 1;
 	}
 	else{
-		return false;
+		return 0;
 	}
 }
 
 
 // Check CRC
-bool PcInterfaceGetCrcCheckFlag(uint8_t *buf){
+uint8_t PcInterfaceGetCrcCheckFlag(uint8_t *buf){
 
 	// Get send crc
 	uint8_t crc = buf[ buf[0] ];
@@ -126,7 +126,7 @@ bool PcInterfaceGetCrcCheckFlag(uint8_t *buf){
 		crc_calc ^= buf[i];
 	}
 
-	return ( bool ) ( crc == crc_calc );
+	return ( uint8_t ) ( crc == crc_calc );
 }
 
 

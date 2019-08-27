@@ -9,18 +9,23 @@
 #define DRIVERS_UARTDRV_H_
 
 #include "stm32f0xx.h"
-#include "stdbool.h"
 
 #include "Drivers/ClockDrv.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-//		UART periphery
+//		Periphery
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+// UART
 #define UART					( USART1 )
 
+// TX DMA Channel
+#define UART_DMA_TX_CH			( DMA1_Channel2 )
+
+// RX DMA Channel
+#define UART_DMA_RX_CH			( DMA1_Channel3 )
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -60,7 +65,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // Check if reception is in progress
-#define UART_RX_BUSY_get()			( bool ) (( UART -> ISR & USART_ISR_BUSY ) == USART_ISR_BUSY )
+#define UART_RX_BUSY_get()			( uint8_t ) (( UART -> ISR & USART_ISR_BUSY ) == USART_ISR_BUSY )
 
 
 
@@ -71,16 +76,26 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Initialize uart
-void UartInit(void);
+// Init UART pins
+void UartPinsInit(void);
 
 // Initialize uart DMA
-void UartDmaInit(uint8_t*);
+//void UartDmaInit(uint8_t*);
+void UartDmaInit(void);
+
+// Initialize uart
+void UartInit(void);
 
 // Send packet
 void UartSendBuffer(uint8_t*, uint32_t);
 
 // Check for new data in reception buffer
-bool UartGetRxBufferNewDataFlag(void);
+uint8_t UartGetRxBufferNewDataFlag(void);
+
+// Get Rx buffer
+uint8_t *UartGetRxBuffer(void);
+
+// Get last message
+uint8_t *UartGetLastMsg(void);
 
 #endif /* DRIVERS_UARTDRV_H_ */

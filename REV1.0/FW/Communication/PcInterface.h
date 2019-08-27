@@ -79,10 +79,10 @@ typedef struct{
 uint8_t *PcInterfaceParseData(uint8_t*, uint8_t);
 
 // Check reception buffer check timeout flag
-bool PcInterfaceGetRxBufCheckTimeoutFlag(void);
+uint8_t PcInterfaceGetRxBufCheckTimeoutFlag(void);
 
 // Check CRC
-bool PcInterfaceGetCrcCheckFlag(uint8_t*);
+uint8_t PcInterfaceGetCrcCheckFlag(uint8_t*);
 
 // Apply command from PC
 void PcInterfaceApplyCommand(PcInterfaceDataTypeDef*);

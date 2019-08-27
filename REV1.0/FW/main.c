@@ -64,7 +64,7 @@ int main(void)
 	SysTickInit();
 	LedInit();
 	UartInit();
-	UartDmaInit(( uint8_t* ) &rx_buffer);
+	//UartDmaInit(( uint8_t* ) &rx_buffer);
 
 
 	uint8_t *parsedData;
@@ -80,13 +80,13 @@ int main(void)
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		if ( pcData.newDataAvailable ){
-			pcData.newDataAvailable = false;
+			pcData.newDataAvailable = 0;
 
 /*			if ( pcData.crcOK ){
 				UartSendBuffer(pcData.data, 50u);
 			}
 */
-		//	UartSendBuffer(parsedData, UART_RX_BUF_SIZE);
+			UartSendBuffer(parsedData, UART_RX_BUF_SIZE);
 		}
 
 
@@ -110,10 +110,12 @@ int main(void)
 		if ( PcInterfaceGetRxBufCheckTimeoutFlag() ){
 
 			if ( UartGetRxBufferNewDataFlag() ){
-//				pcData.data 				= PcInterfaceParseData((uint8_t*) &rx_buffer, UART_RX_BUF_SIZE);
+/*				pcData.data 				= PcInterfaceParseData((uint8_t*) &rx_buffer, UART_RX_BUF_SIZE);
 				parsedData	 				= PcInterfaceParseData((uint8_t*) &rx_buffer, UART_RX_BUF_SIZE);
-				pcData.crcOK 				= PcInterfaceGetCrcCheckFlag((uint8_t*) pcData.data);
-				pcData.newDataAvailable 	= true;
+*/				pcData.crcOK 				= PcInterfaceGetCrcCheckFlag((uint8_t*) pcData.data);
+				pcData.newDataAvailable 	= 1;
+
+				parsedData = UartGetLastMsg();
 			}
 		}
 
