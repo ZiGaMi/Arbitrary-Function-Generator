@@ -39,14 +39,6 @@ SOFTWARE.
 
 
 
-// UART Reception buffer
-uint8_t rx_buffer[UART_RX_BUF_SIZE];
-
-
-
-// PC Interface Data
-PcInterfaceDataTypeDef pcData;
-
 
 
 /**
@@ -64,62 +56,40 @@ int main(void)
 	SysTickInit();
 	LedInit();
 	UartInit();
-	//UartDmaInit(( uint8_t* ) &rx_buffer);
 
-
-	uint8_t *parsedData;
 
 	while(1){
 
 
 
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//
-		//		APPLY COMMAND FROM PC
-		//
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-		if ( pcData.newDataAvailable ){
-			pcData.newDataAvailable = 0;
-
-/*			if ( pcData.crcOK ){
-				UartSendBuffer(pcData.data, 50u);
-			}
-*/
-			UartSendBuffer(parsedData, UART_RX_BUF_SIZE);
-		}
-
-
-		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//
-		//		CHECK AND PARSE FOR NEW DATA IN RECEPTION BUFFER
+		//		PC INTERFACE
 		//
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		if ( PcInterfaceGetRxBufCheckTimeoutFlag() ){
 
-			if ( UartGetRxBufferNewDataFlag() ){
-/*				pcData.data 				= PcInterfaceParseData((uint8_t*) &rx_buffer, UART_RX_BUF_SIZE);
-				parsedData	 				= PcInterfaceParseData((uint8_t*) &rx_buffer, UART_RX_BUF_SIZE);
-*/				pcData.crcOK 				= PcInterfaceGetCrcCheckFlag((uint8_t*) pcData.data);
-				pcData.newDataAvailable 	= 1;
+			if ( UartRxNewDataReady() ){
+				UartRxReintiDma();
 
-				parsedData = UartGetLastMsg();
+				// Parse command
+				PcInterfaceParseData( UartGetRxBuffer() );
+
+				// Apply command
+				PcInterfaceApplyCommand();
+
 			}
 		}
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 	}
 
 }

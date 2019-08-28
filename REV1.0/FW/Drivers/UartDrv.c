@@ -12,6 +12,9 @@
 // Reception buffer
 uint8_t rxBuffer[ UART_RX_BUF_SIZE ];
 
+// Working buffer
+uint8_t rxBuffer_temp[ UART_RX_BUF_SIZE ];
+
 
 // Init pins
 void UartPinsInit(){
@@ -60,10 +63,8 @@ void UartDmaInit(){
 	// Enable channel
 	// Medium priority
 	// Memory increment mode
-	// Circular mode
 	// Read from periphery
-	UART_DMA_RX_CH -> CCR = ( DMA_CCR_EN | DMA_CCR_PL_0 | DMA_CCR_MINC | DMA_CCR_CIRC);
-
+	UART_DMA_RX_CH -> CCR = ( DMA_CCR_EN | DMA_CCR_PL_0 | DMA_CCR_MINC );
 
 
 	//
@@ -111,69 +112,6 @@ void UartInit(){
 	UART -> CR1 |= ( USART_CR1_UE | USART_CR1_RE |	USART_CR1_TE );
 }
 
-/*
-// Initialize uart1 DMA
-void UartDmaInit(uint8_t *rx_buffer){
-
-	//
-	// 	Configure URAT RX DMA Stream
-	//
-	//  DMA1, Stream1, channel 3
-	//
-
-	// Make sure that UART RX Stream aren't remapped
-	SYSCFG -> CFGR1 &= ~( SYSCFG_CFGR1_USART1RX_DMA_RMP );
-
-	// Enable DMA clock
-	RCC -> AHBENR |= RCC_AHBENR_DMA1EN;
-
-	// Disable DMA channel
-	DMA1_Channel3 -> CCR &= ~( DMA_CCR_EN );
-
-
-	// Medium priority
-	// Memory increment mode
-	// Circular mode
-	// Read from periphery
-	DMA1_Channel3 -> CCR |= ( DMA_CCR_PL_0 | DMA_CCR_MINC | DMA_CCR_CIRC);
-
-	// Number of data to transfer
-	DMA1_Channel3 -> CNDTR = ( uint16_t ) ( UART_RX_BUF_SIZE );
-
-	// Peripheral address to read from
-	DMA1_Channel3 -> CPAR = ( uint32_t ) &( USART1 -> RDR );
-
-	// Memory address to write to
-	DMA1_Channel3 -> CMAR = ( uint32_t ) ( rx_buffer );
-
-	// Enable channel
-	DMA1_Channel3 -> CCR |= ( DMA_CCR_EN );
-
-
-
-	//
-	// 	Configure UART TX DMA Stream
-	//
-	//  DMA1, Stream1, channel 2
-	//
-
-	// Make sure that UART RX Stream aren't remapped
-	SYSCFG -> CFGR1 &= ~( SYSCFG_CFGR1_USART1TX_DMA_RMP );
-
-	// Disable DMA channel
-	DMA1_Channel2 -> CCR &= ~( DMA_CCR_EN );
-
-	// Medium priority
-	// Memory increment mode
-	// Read from memory
-	DMA1_Channel2 -> CCR |= ( DMA_CCR_PL_0 | DMA_CCR_MINC | DMA_CCR_DIR );
-
-	// Peripheral address to read from
-	DMA1_Channel2 -> CPAR = ( uint32_t ) &( USART1 -> TDR );
-}
-*/
-
-
 
 // Send packet
 void UartSendBuffer(uint8_t *tx_buf, uint32_t size){
@@ -192,17 +130,17 @@ void UartSendBuffer(uint8_t *tx_buf, uint32_t size){
 }
 
 
-// Previous dma counter
-uint32_t dma_counter_prew = UART_RX_BUF_SIZE;
 
 // Check for new data in reception buffer
-uint8_t UartGetRxBufferNewDataFlag(){
+uint8_t UartRxNewDataReady(){
 
-	// Previous DMA counter
-	static uint16_t dma_counter_prew = UART_RX_BUF_SIZE;
+	if ((( UART_DMA_RX_CH -> CNDTR ) != UART_RX_BUF_SIZE ) && ( !UART_RX_BUSY_get() )){
 
-	if (( dma_counter_prew != ( UART_DMA_RX_CH -> CNDTR )) && ( !UART_RX_BUSY_get())){
-		dma_counter_prew = ( UART_DMA_RX_CH -> CNDTR );
+		// Copy rx data to working buffer
+		for ( uint8_t i = 0; i < UART_RX_BUF_SIZE; i++ ){
+			rxBuffer_temp[i] = rxBuffer[i];
+		}
+
 		return 1;
 	}
 	else{
@@ -210,37 +148,17 @@ uint8_t UartGetRxBufferNewDataFlag(){
 	}
 }
 
+// Clear new data flag
+void UartRxReintiDma(){
+	UART_DMA_RX_CH -> CCR &= ~( DMA_CCR_EN );
+	UART_DMA_RX_CH -> CNDTR = ( uint32_t ) ( UART_RX_BUF_SIZE );
+	UART_DMA_RX_CH -> CCR |= ( DMA_CCR_EN );
+}
+
 
 // Get Rx buffer
 uint8_t *UartGetRxBuffer(){
-	return (uint8_t*) &rxBuffer;
+	return (uint8_t*) &( rxBuffer_temp );
 }
 
-// Get last msg
-uint8_t *UartGetLastMsg(){
 
-	// Previous msg pointer
-	static uint8_t msg_p_prev = UART_RX_BUF_SIZE;
-
-	// Working buffer
-	static uint8_t rxWorkingBuffer[ UART_RX_BUF_SIZE ];
-
-	uint8_t msg_len = 0;
-
-	if (( UART_DMA_RX_CH -> CNDTR ) > msg_p_prev ){
-		msg_len = (( UART_DMA_RX_CH -> CNDTR ) - msg_p_prev);
-	}
-
-	else if (( UART_DMA_RX_CH -> CNDTR ) > msg_p_prev ){
-		msg_len = ( UART_RX_BUF_SIZE - msg_p_prev + ( UART_DMA_RX_CH -> CNDTR ));
-	}
-
-	for ( uint8_t i = 0; i < msg_len; i++){
-		rxWorkingBuffer[i] = rxBuffer[(( msg_p_prev + i ) % UART_RX_BUF_SIZE ) ];
-	}
-
-	// Store msg pointer
-	msg_p_prev = ( UART_DMA_RX_CH -> CNDTR );
-
-	return ( uint8_t* ) &rxWorkingBuffer;
-}

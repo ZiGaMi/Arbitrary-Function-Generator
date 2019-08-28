@@ -12,6 +12,7 @@
 
 #include "Drivers/ClockDrv.h"
 
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 //		Periphery
@@ -26,6 +27,9 @@
 
 // RX DMA Channel
 #define UART_DMA_RX_CH			( DMA1_Channel3 )
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -45,6 +49,7 @@
 
 
 
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 //		UART Settings
@@ -56,6 +61,7 @@
 
 // Reception buffer size
 #define UART_RX_BUF_SIZE		( 20u )
+
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -80,7 +86,6 @@
 void UartPinsInit(void);
 
 // Initialize uart DMA
-//void UartDmaInit(uint8_t*);
 void UartDmaInit(void);
 
 // Initialize uart
@@ -90,12 +95,15 @@ void UartInit(void);
 void UartSendBuffer(uint8_t*, uint32_t);
 
 // Check for new data in reception buffer
-uint8_t UartGetRxBufferNewDataFlag(void);
+uint8_t UartRxNewDataReady(void);
+
+// Set new number of data to transmit
+void UartRxReintiDma(void);
 
 // Get Rx buffer
 uint8_t *UartGetRxBuffer(void);
 
-// Get last message
-uint8_t *UartGetLastMsg(void);
+
+
 
 #endif /* DRIVERS_UARTDRV_H_ */

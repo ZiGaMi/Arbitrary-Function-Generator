@@ -9,87 +9,82 @@
 #include "Communication/PcInterface.h"
 
 
+// Parsed data
+uint8_t parsedData[ UART_RX_BUF_SIZE ];
 
-// Make copy of reception buffer
-static void bufferCopy(uint8_t *dest, uint8_t *src, uint8_t size){
-	for ( uint8_t i = 0u; i < size; i++ ){
-		*( dest + i ) = *( src + i );
-	}
-}
+// Message from PC
+pcMessage pcMsg;
+
 
 
 
 // Find header
 // Returns index position at start of header
-static uint8_t getHeaderIndex(uint8_t *buf, uint8_t b_size, uint8_t *header, uint8_t h_size){
+static uint8_t getHeaderIndex(uint8_t *buf, uint8_t *header, uint8_t h_size){
 
-	uint8_t h_pos = ( b_size + h_size );
-	uint8_t h_idx = 0u;
-	for ( uint8_t i = 0; i < ( b_size + h_size ); i++ ){
-		//if ( *( buf + ( i % b_size )) == *( header + ( h_idx % h_size ))){
-		if ( *( buf + ( i % b_size )) == *( header + h_idx )){
+	uint8_t h_pos = 0;
+	uint8_t h_idx = 0;
+	for ( uint8_t i = 0; i < UART_RX_BUF_SIZE; i++ ){
+		if ( *( buf + i ) == *( header + h_idx )){
 			h_idx++;
 			if ( h_idx == h_size ){
-				h_pos = (( i + 1u ) % b_size );
+				h_pos = ( i - h_size + 1 );
 				break;
 			}
 		}
 		else{
-			h_idx = 0u;
+			h_idx = 0;
 		}
 	}
+
 	return h_pos;
 }
 
-//uint8_t data[UART_RX_BUF_SIZE];
+
+
+// Check CRC
+static uint8_t PcInterfaceGetCrcCheckFlag(){
+
+	// Get send crc
+	uint8_t crc = parsedData[ parsedData[0] ];
+
+	// Calculate crc
+	uint8_t crc_calc = 0u;
+	for ( uint8_t i = 0; i < parsedData[0]; i++ ){
+		crc_calc ^= parsedData[i];
+	}
+
+	return ( uint8_t ) ( crc == crc_calc );
+}
+
+
 
 // Parse data
 // Arguments: input buffer, size of input buffer
-uint8_t *PcInterfaceParseData(uint8_t *rx_buffer, uint8_t size){
+void PcInterfaceParseData(uint8_t *rx_buf){
 
-	static uint8_t data[UART_RX_BUF_SIZE];
-	static uint8_t rx_working_buffer[UART_RX_BUF_SIZE];
+	//static uint8_t data[UART_RX_BUF_SIZE];
 
-	// Make a working copy
-	bufferCopy((uint8_t*) &rx_working_buffer[0], (uint8_t*) rx_buffer, size);
-	//memcpy(&rx_working_buffer, rx_buffer, size);
+	// Find header
+	uint8_t h_pos = getHeaderIndex(rx_buf, PROTOCOL_HEADER, PROTOCOL_HEADER_size);
 
+	// Get msg lenght ( lenght in message doesn't count itself )
+	uint8_t msg_len = ( *( rx_buf + h_pos + PROTOCOL_HEADER_size ) + 1 );
 
-
-
-	// DEBUGGING
-	// TODO: Rx_buffer is OK -> Check what is going on with rx_working buffer
-	//UartSendBuffer((uint8_t*)&rx_buffer[0], UART_RX_BUF_SIZE);
-	//UartSendBuffer((uint8_t*)&rx_working_buffer[0], UART_RX_BUF_SIZE);
-
-
-	// Get header index
-	uint8_t len_idx = getHeaderIndex((uint8_t*) &rx_working_buffer, size, PROTOCOL_HEADER, PROTOCOL_HEADER_size);
-
-	// Clear data
-	/*for ( uint8_t i = 0; i < UART_RX_BUF_SIZE; i++ ){
-		data[i] = 0u;
+	// Ignore header
+	for ( uint8_t i = 0; i < msg_len; i++){
+		parsedData[i] = *( rx_buf + h_pos + PROTOCOL_HEADER_size + i);
 	}
-	*/
 
-	// Header detected
-	if ( len_idx != size ){
-
-		// Get data length
-		// Including also length itself
-		uint8_t len = ( rx_working_buffer[len_idx] + 1u );
-
-		// Get data
-		uint8_t idx = 0u;
-		while ( len-- ){
-			data[( idx % size )] = rx_working_buffer[(( idx + len_idx ) % size )];
-			idx++;
+	// If CRC not OK -> Clear buffer
+	if ( !PcInterfaceGetCrcCheckFlag() ){
+		for ( uint8_t i = 0; i < UART_RX_BUF_SIZE; i++ ){
+			parsedData[i] = 0;
 		}
-		UartSendBuffer((uint8_t*) &data, UART_RX_BUF_SIZE);
-		return (uint8_t*) ( &data );
 	}
 	else{
-		return NULL;
+		pcMsg.cmd = parsedData[1];
+		pcMsg.freq = ((( parsedData[2] << 24u ) & 0xFF000000 ) | (( parsedData[3] << 16u ) & 0xFF0000 ) | (( parsedData[4] << 8u ) & 0xFF00 ) | ( parsedData[5] & 0xFF ));
 	}
 }
 
@@ -114,21 +109,40 @@ uint8_t PcInterfaceGetRxBufCheckTimeoutFlag(){
 }
 
 
-// Check CRC
-uint8_t PcInterfaceGetCrcCheckFlag(uint8_t *buf){
 
-	// Get send crc
-	uint8_t crc = buf[ buf[0] ];
-
-	// Calculate crc
-	uint8_t crc_calc = 0u;
-	for ( uint8_t i = 0; i < buf[0]; i++ ){
-		crc_calc ^= buf[i];
-	}
-
-	return ( uint8_t ) ( crc == crc_calc );
+// Get parsed data
+uint8_t *PcInterfaceGetParsedData(){
+	return (uint8_t*) &( parsedData );
 }
 
+
+
+// Apply command from PC
+void PcInterfaceApplyCommand(){
+
+	switch( pcMsg.cmd ){
+
+		case P_WAVEFORM_CODE_SINE:
+			UartSendBuffer((uint8_t*) "\x01", 1);
+			break;
+
+		case P_WAVEFORM_CODE_SQRT:
+			UartSendBuffer((uint8_t*) "\x02", 1);
+			break;
+
+		case P_WAVEFORM_CODE_RECT:
+			UartSendBuffer((uint8_t*) "\x03", 1);
+			break;
+
+		case P_WAVEFORM_CODE_SAW:
+			UartSendBuffer((uint8_t*) "\x04", 1);
+			break;
+
+		default:
+			UartSendBuffer((uint8_t*) "\xFF", 1);
+			break;
+	}
+}
 
 
 

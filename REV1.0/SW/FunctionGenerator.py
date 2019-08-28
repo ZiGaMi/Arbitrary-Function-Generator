@@ -58,7 +58,7 @@ if __name__ == "__main__":
 			
 		elif cmd[:3] == "set":
 			if cmd[4:8] == "sine":
-				serPort.p_write([0xAA, 0x55, 0x05, Defines.WAVE_SINE_code, 0x00, 0x00, 0x10, ( 0x05 ^ Defines.WAVE_SINE_code ^ 0x10 )])
+				serPort.p_write([0xAA, 0x55, 0x05, Defines.WAVE_SINE_code, 0x00, 0x00, 0x10, ( 0x05 ^ Defines.WAVE_SINE_code ^ 0x00 )])
 			elif cmd[4:8] == "sqrt":
 				serPort.p_write([0xAA, 0x55, 0x05, Defines.WAVE_SQRT_code, 0x00, 0x00, 0x10, ( 0x05 ^ Defines.WAVE_SQRT_code ^ 0x10 )])
 			elif cmd[4:8] == "rect":

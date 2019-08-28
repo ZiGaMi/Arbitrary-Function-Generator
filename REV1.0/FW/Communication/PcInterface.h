@@ -52,18 +52,11 @@
 
 
 
-////////////////////////////////////////////////////////////////////////////////
-//
-//	PC Interface Data Structure
-//
-////////////////////////////////////////////////////////////////////////////////
-
 typedef struct{
 
-	uint8_t		newDataAvailable;			// New data in buffer flag
-	uint8_t 	*data;						// Buffer of parsed data
-	uint8_t 	crcOK;						// Data packet error check flag
-}PcInterfaceDataTypeDef;
+	uint8_t 	cmd;
+	uint32_t 	freq;
+}pcMessage;
 
 
 
@@ -76,16 +69,17 @@ typedef struct{
 ////////////////////////////////////////////////////////////////////////////////
 
 // Parse data
-uint8_t *PcInterfaceParseData(uint8_t*, uint8_t);
+void PcInterfaceParseData(uint8_t*);
 
 // Check reception buffer check timeout flag
 uint8_t PcInterfaceGetRxBufCheckTimeoutFlag(void);
 
-// Check CRC
-uint8_t PcInterfaceGetCrcCheckFlag(uint8_t*);
-
 // Apply command from PC
-void PcInterfaceApplyCommand(PcInterfaceDataTypeDef*);
+void PcInterfaceApplyCommand(void);
+
+// Get parsed data
+uint8_t *PcInterfaceGetParsedData(void);
+
 
 
 
