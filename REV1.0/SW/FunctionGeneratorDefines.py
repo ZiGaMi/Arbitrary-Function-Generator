@@ -77,6 +77,8 @@ class FunctionGeneratorDefines:
 	# Set commands
 	CLI_SET_WAVEFORM_cmd		= "set"
 	
+	# Clear command window
+	CLI_CLEAR_cmd				= "cls"
 	
 	
 	
