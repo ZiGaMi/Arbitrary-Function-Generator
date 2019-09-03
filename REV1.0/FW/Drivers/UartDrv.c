@@ -41,12 +41,22 @@ void UartPinsInit(){
 // Init dma
 void UartDmaInit(){
 
+	// Enable DMA clock
+	RCC -> AHBENR |= RCC_AHBENR_DMA1EN;
+
 	//
 	// 	Configure UART RX DMA Stream
 	//
 
-	// Enable DMA clock
-	RCC -> AHBENR |= RCC_AHBENR_DMA1EN;
+	// Make sure that DMA streams are remapped
+#if ( UART_DMA_RX_REMAP)
+
+	// Enable system configuration clock
+	RCC -> APB2ENR |= (RCC_APB2ENR_SYSCFGEN );
+
+	// Remap DMA
+	SYSCFG -> CFGR1 |= ( SYSCFG_CFGR1_USART1RX_DMA_RMP );
+#endif
 
 	// Disable DMA channel
 	UART_DMA_RX_CH -> CCR &= ~( DMA_CCR_EN );
@@ -70,6 +80,13 @@ void UartDmaInit(){
 	//
 	// 	Configure UART TX DMA Stream
 	//
+
+	// Make sure that DMA streams are remapped
+#if ( UART_DMA_TX_REMAP )
+
+	// Remap DMA
+	SYSCFG -> CFGR1 |= ( SYSCFG_CFGR1_USART1TX_DMA_RMP );
+#endif
 
 	// Disable DMA channel
 	UART_DMA_TX_CH -> CCR = 0;

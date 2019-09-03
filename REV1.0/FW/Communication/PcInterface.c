@@ -81,10 +81,12 @@ void PcInterfaceParseData(uint8_t *rx_buf){
 		for ( uint8_t i = 0; i < UART_RX_BUF_SIZE; i++ ){
 			parsedData[i] = 0;
 		}
+		pcMsg.cmd = 0u;
+		pcMsg.freq = 0ul;
 	}
 	else{
 		pcMsg.cmd = parsedData[1];
-		pcMsg.freq = ((( parsedData[2] << 24u ) & 0xFF000000 ) | (( parsedData[3] << 16u ) & 0xFF0000 ) | (( parsedData[4] << 8u ) & 0xFF00 ) | ( parsedData[5] & 0xFF ));
+		pcMsg.freq = (uint32_t) ((( parsedData[2] << 24u ) & 0xFF000000 ) | (( parsedData[3] << 16u ) & 0xFF0000 ) | (( parsedData[4] << 8u ) & 0xFF00 ) | ( parsedData[5] & 0xFF ));
 	}
 }
 

@@ -23,12 +23,16 @@
 #define UART					( USART1 )
 
 // TX DMA Channel
-#define UART_DMA_TX_CH			( DMA1_Channel2 )
+#define UART_DMA_TX_CH			( DMA1_Channel4 )
+
+// TX DMA Channel Remap
+#define UART_DMA_TX_REMAP		( 1 )
 
 // RX DMA Channel
-#define UART_DMA_RX_CH			( DMA1_Channel3 )
+#define UART_DMA_RX_CH			( DMA1_Channel5 )
 
-
+// TX DMA Channel Remap
+#define UART_DMA_RX_REMAP		( 1 )
 
 
 ////////////////////////////////////////////////////////////////////////////////
