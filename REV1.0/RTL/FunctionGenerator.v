@@ -13,12 +13,22 @@
 //
 
 module FunctionGenerator(
+	
+`ifdef SIMULATION
 	sys_clk_i,
+`endif 
 	sys_rst_i,
 
 	dds_ch1_o,
-	dds_ch2_o
+	dds_ch2_o,
+	
+	int_clk_i,
+	int_mosi_i,
+	int_miso_o,
+	int_cs_i
 );
+
+
 
 /////////////////////////////////////////////////
 //
@@ -26,67 +36,33 @@ module FunctionGenerator(
 //
 /////////////////////////////////////////////////
 
-// System clock
-input sys_clk_i;
+//`ifndef INT_OSC_EN
+`ifdef SIMULATION
+	// System clock
+	input sys_clk_i;
+`endif
 
 // System reset
 input sys_rst_i;
 
 // DDS channel 1 output
-output [11:0] dds_ch1_o;
+output [(`DAC_RES_WIDTH - 1):0] dds_ch1_o;
 
 // DDS channel 2 output
-output [11:0] dds_ch2_o;
+output [(`DAC_RES_WIDTH - 1):0] dds_ch2_o;
 
+// Interface clock input
+input int_clk_i;
 
-wire [11:0] ch1;
-wire [11:0] ch2;
+// Interface master data input
+input int_mosi_i;
 
-assign dds_ch1_o = ch1;
-assign dds_ch2_o = ch2;
+// Interface slave data output
+output int_miso_o;
 
+// Interface slave select input
+input int_cs_i;
 
-/////////////////////////////////////////////////
-//
-//		RGB drivers 
-//
-//	NOTE: Can only be driven as open-drain
-//
-/////////////////////////////////////////////////
-
-//`ifndef SIMULATION
-/*
-// Channel 1 DAC bit 7
-SB_IO_OD #(
-	.PIN_TYPE				( 6'b011001 ),		// pin output
-	.NEG_TRIGGER			( 1'b0 )			// rising edge
-)
-RGB_IO7_inst(
-	.PACKAGEPIN				( dds_ch1_o[7] ),
-	.DOUT0					( ch1[7] )
-);
-
-// Channel 1 DAC bit 8
-SB_IO_OD #(
-	.PIN_TYPE				( 6'b011001 ),		// pin output
-	.NEG_TRIGGER			( 1'b0 )			// rising edge
-)
-RGB_IO8_inst(
-	.PACKAGEPIN				( dds_ch1_o[8] ),
-	.DOUT0					( ch1[8] )
-);
-
-// Channel 1 DAC bit 9
-SB_IO_OD #(
-	.PIN_TYPE				( 6'b011001 ),		// pin output
-	.NEG_TRIGGER			( 1'b0 )			// rising edge
-)
-RGB_IO9_inst(
-	.PACKAGEPIN				( dds_ch1_o[9] ),
-	.DOUT0					( ch1[9] )
-);
-*/
-//`endif
 
 
 
@@ -107,20 +83,71 @@ wire clk_p_2_w;
 
 /////////////////////////////////////////////////
 //
+//		INTERNAL OSCILLATOR - 48 MHz
+//
+/////////////////////////////////////////////////
+//`ifdef INT_OSC_EN
+`ifndef SIMULATION
+
+// System clock
+wire sys_clk_i;
+
+SB_HFOSC OSC_48MHZ_INST(
+
+	.CLKHFEN				(1'b1),
+	.CLKHFPU				(1'b1),
+	.CLKHF					(sys_clk_i)
+)/* synthesis ROUTE_THROUGH_FABRIC = 0 */;
+
+`endif
+
+
+
+
+
+/////////////////////////////////////////////////
+//
+//		INTERFACE WITH MASTER DEVICE
+//
+/////////////////////////////////////////////////
+
+Interface INTERFACE_INST(
+
+	.sys_clk_i					( sys_clk_i ),
+	.sys_rst_i					( sys_rst_i ),
+	
+	.int_clk_i					( int_clk_i ),
+	.int_mosi_i					( int_mosi_i ),
+	.int_cs_i					( int_cs_i ),
+	.int_miso_o					( int_miso_o ),
+	
+	.int_re_o					(  ),
+	.int_we_o					(  ),
+	.int_addr_o					(  ),
+	.int_data_o					(  ),
+	.int_data_i					(  )
+);
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////
+//
 //		WAVEFORM CLOCK 
 //
 /////////////////////////////////////////////////
 
 // NOTE: Check what to do with if PSC = 0 or PSC = 1 !!!!
-WaveformClock WC_inst(
+WaveformClock WC_INST(
 	.sys_clk_i					( sys_clk_i ),
 	.sys_rst_i					( sys_rst_i ),
 
-	.wc_en_1_i					( 1'b1 ),
 	.wc_en_2_i					( 1'b1 ),
-	.wc_psc_1_i					( 24'd25 ),
-	.wc_psc_2_i					( 24'd10 ),
-	.wc_clk_p_1_o				( clk_p_1_w ),
+	.wc_psc_2_i					( 24'd2 ),
 	.wc_clk_p_2_o				( clk_p_2_w )
 );
 
@@ -133,17 +160,19 @@ WaveformClock WC_inst(
 //
 /////////////////////////////////////////////////
 
-SinusWaveform SW_inst(
+SinusWaveform SW_INST(
 	.sys_clk_i					( sys_clk_i ),
 	.sys_rst_i					( sys_rst_i ),
 	
-	.sw_en_1_i					( 1'b1 ),
 	.sw_en_2_i					( 1'b1 ),
-	.sw_clk_1_i					( clk_p_1_w ),
 	.sw_clk_2_i					( clk_p_2_w ),
-	.sw_sine_1_o				( ch1 ),
-	.sw_sine_2_o				( ch2)
+	.sw_sine_2_o				( dds_ch2_o)
 );
+
+
+
+
+
 
 
 
