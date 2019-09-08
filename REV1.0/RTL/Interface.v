@@ -69,7 +69,7 @@ output [(`RF_ADDR_WIDTH-1):0] int_addr_o;
 output [(`RF_DATA_WIDTH-1):0] int_data_o;
 
 // Data input
-output [(`RF_DATA_WIDTH-1):0] int_data_i;
+input [(`RF_DATA_WIDTH-1):0] int_data_i;
 
 
 
@@ -96,16 +96,20 @@ wire cs_pos;
 reg [(`INT_CMD_WIDTH - 1):0] cmd;
 
 // Reception data
-reg [(`INT_DATA_WIDTH - 1):0] data_rx;
+reg [(`RF_DATA_WIDTH - 1):0] data_rx;
 
 // Reception data valid
 reg data_rx_dv;
 
 // Transmition data
-reg [(`INT_DATA_WIDTH - 1):0] data_tx;
+reg [(`RF_DATA_WIDTH - 1):0] data_tx;
 
 // Bit counter
 reg [7:0] bit_cnt;
+
+// Register addr and data
+reg [(`RF_ADDR_WIDTH - 1):0] rf_addr;
+reg [(`RF_DATA_WIDTH - 1):0] rf_data;
 
 
 /////////////////////////////////////////////////
@@ -152,35 +156,44 @@ always @ (posedge sys_clk_i)
 				cmd <= (( cmd << 1 ) | ( int_mosi_i & 1 ));
 			end
 			
-			else begin
+		/*	else begin
 
-				case ( cmd & `INT_CMD_ADDR_MSK )
+				case ( cmd & `INT_CMD_CMD_MSK )
 				
-					`INT_CMD_WRITE: begin
+					( `INT_CMD_WRITE ): begin
 					
+						// Receive data
+						data_rx <= (( data_rx << 1 ) | ( int_mosi_i & 1 ));					
 					end
 					
-					`INT_CMD_READ: begin
+				//	`INT_CMD_READ: begin
+				//	
+				//	end
 					
-					end
-					
-					default: begin
-					end
+				//	default: begin
+				//	end
 					
 				endcase 
 				
 				
 				// Receive data
-				data_rx <= (( data_rx << 1 ) | ( int_mosi_i & 1 ));
+				//data_rx <= (( data_rx << 1 ) | ( int_mosi_i & 1 ));
 				
 				// Transmit data
-				int_miso_o <= data_tx[0];
+				//int_miso_o <= data_tx[0];
 			end
-			
+			*/
+			// Increment bit counter
 			bit_cnt <= bit_cnt + 1;
-		end	
+		end			
 	end
 	
+	
+
+
+// Address and data lines
+assign int_addr_o = ( int_re_o || int_we_o ) ? ( rf_addr ) : ( 0 );
+assign int_data_o = ( int_we_o & rf_data );
 	
 	
 // Store data to register file
@@ -189,11 +202,13 @@ always @ (posedge sys_clk_i)
 		if ( sys_rst_i == `RST_ACT ) begin
 			int_re_o <= 0;
 			int_we_o <= 0;
+			rf_addr <= 0;
 		end
 		
-		else if (  ) begin
-		
-			
+		else if ( clk_neg && ( bit_cnt == 8 )) begin
+			rf_addr 	<= ( cmd & `INT_CMD_ADDR_MSK );
+		//	int_re_o 	<= (( cmd & `INT_CMD_CMD_MSK ) ? (`INT_CMD_READ ) : (0) );
+		//	int_re_o 	<= (( cmd & `INT_CMD_CMD_MSK ) == `INT_CMD_WRITE );
 		end
 	
 	

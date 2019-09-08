@@ -72,7 +72,7 @@
 `define RF_ADDR_WIDTH			( 4 )
 
 // Register file data size
-`define RF_DATA_WIDTH			( 8 )
+`define RF_DATA_WIDTH			( 24 )
 
 
 
@@ -85,15 +85,15 @@
 // Command length
 `define INT_CMD_WIDTH			( 8 )
 
-// Data length
-`define INT_DATA_WIDTH			( 24 )
-
 // Command list
 `define INT_CMD_READ			( 8'C0 )
 `define INT_CMD_WRITE			( 8'C0 )
 
+// Command mask in command byte
+`define INT_CMD_CMD_MSK			( 8'hF0 )
+
 // Address mask in command byte
-`define INT_CMD_ADDR_MSK		( 8'hF0 )
+`define INT_CMD_ADDR_MSK		( 8'h0F )
 
 
 `endif // _DEFINES_VH

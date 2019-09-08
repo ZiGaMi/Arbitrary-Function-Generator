@@ -18,6 +18,7 @@
 
 // Delay
 `define _1_us				( 1e3 )					// relative to timescale !!!
+`define _10_us				( 10 * `_1_us )					
 `define _100_us				( 100 * `_1_us )
 `define _1_ms				( 1e3 * `_1_us )
 `define _100_ms				( 1e5 * `_1_us )
@@ -91,16 +92,18 @@ initial begin
 	
 	// Send byte
 	#( `_100_us );
+	spi_cs <= 0;
+	
+	#( `SPI_CLOCK_TICK );
+	SPI_SEND_BYTE(8'hC0);
+	#( `_10_us );
 	SPI_SEND_BYTE(8'hAA);
 	
-
-	#( `_100_us );
-	SPI_SEND_BYTE(8'h55);	
-	
+	spi_cs <= 1;
 	
 	
 	// End simulation
-	#(`_1_us) $finish();
+	#(`_100_us) $finish();
 
 end
 
@@ -152,7 +155,7 @@ task SPI_SEND_BYTE;
 	input [7:0] data;
 	integer i;
 	begin
-		spi_cs <= 0;
+		//spi_cs <= 0;
 		spi_mosi <= data[7];
 		data <= ( data << 1 );
 		#( `SPI_CLOCK_TICK );
@@ -171,7 +174,7 @@ task SPI_SEND_BYTE;
 			#( `SPI_CLOCK_TICK );
 		end
 		
-		spi_cs <= 1;
+		//spi_cs <= 1;
 	end
 	
 endtask
