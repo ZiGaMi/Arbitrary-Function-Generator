@@ -54,13 +54,13 @@ input int_mosi_i;
 input int_cs_i;
 
 // Communication slave data output
-output int_miso_o;
+output reg int_miso_o;
 
 // Read enable output
-output int_re_o;
+output reg int_re_o;
 
 // Write enable output
-output int_we_o;
+output reg int_we_o;
 
 // Address of register output
 output [(`RF_ADDR_WIDTH-1):0] int_addr_o;
@@ -83,11 +83,29 @@ output [(`RF_DATA_WIDTH-1):0] int_data_i;
 // Synchronise interface clock
 reg clk_a, clk_b;
 
-// Positive edge of interface clock
+// Positive / negative edge of interface clock
 wire clk_pos;
+wire clk_neg;
 
+// Chip select negative edge
+reg cs_a, cs_b;
+wire cs_neg;
+wire cs_pos;
 
+// Command
+reg [(`INT_CMD_WIDTH - 1):0] cmd;
 
+// Reception data
+reg [(`INT_DATA_WIDTH - 1):0] data_rx;
+
+// Reception data valid
+reg data_rx_dv;
+
+// Transmition data
+reg [(`INT_DATA_WIDTH - 1):0] data_tx;
+
+// Bit counter
+reg [7:0] bit_cnt;
 
 
 /////////////////////////////////////////////////
@@ -96,16 +114,90 @@ wire clk_pos;
 //
 /////////////////////////////////////////////////
 
-// Generate positive edge on interface clock
+// Generate pulse on positive edge of interface clock
 assign clk_pos = ( clk_a & !clk_b );
+assign clk_neg = ( !clk_a & clk_b );
 
-// Synchronize clock
+// Generate pulse on negative edge of cs 
+assign cs_neg = ( cs_a & !cs_b );
+
+// Generate pulse on positive edge of cs
+assign cs_pos = ( !cs_a & cs_b );
+
+
+// Synchronize input data
 always @ (posedge sys_clk_i)
 	begin
-		clk_a <= int_clk_i;
-		clk_b <= clk_a;
+		clk_a 	<= int_clk_i;
+		clk_b 	<= clk_a;
+		cs_a 	<= int_cs_i;
+		cs_b	<= cs_a;
 	end
+	
+	
 
+// Get command and data
+always @ (posedge sys_clk_i)
+	begin
+		if (( sys_rst_i == `RST_ACT ) || ( cs_neg )) begin
+			cmd 			<= 0;
+			data_rx 		<= 0;
+			bit_cnt			<= 0;
+			data_rx_dv 		<= 0;
+		end
+		
+		else if ( clk_pos ) begin
+		
+			if ( bit_cnt <= 7 ) begin
+				cmd <= (( cmd << 1 ) | ( int_mosi_i & 1 ));
+			end
+			
+			else begin
+
+				case ( cmd & `INT_CMD_ADDR_MSK )
+				
+					`INT_CMD_WRITE: begin
+					
+					end
+					
+					`INT_CMD_READ: begin
+					
+					end
+					
+					default: begin
+					end
+					
+				endcase 
+				
+				
+				// Receive data
+				data_rx <= (( data_rx << 1 ) | ( int_mosi_i & 1 ));
+				
+				// Transmit data
+				int_miso_o <= data_tx[0];
+			end
+			
+			bit_cnt <= bit_cnt + 1;
+		end	
+	end
+	
+	
+	
+// Store data to register file
+always @ (posedge sys_clk_i)
+	begin
+		if ( sys_rst_i == `RST_ACT ) begin
+			int_re_o <= 0;
+			int_we_o <= 0;
+		end
+		
+		else if (  ) begin
+		
+			
+		end
+	
+	
+	end
 
 
 

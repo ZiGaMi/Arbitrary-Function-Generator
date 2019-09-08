@@ -76,6 +76,26 @@
 
 
 
+/////////////////////////////////////////////////////////
+//	
+//		INTERFACE
+//
+/////////////////////////////////////////////////////////
+
+// Command length
+`define INT_CMD_WIDTH			( 8 )
+
+// Data length
+`define INT_DATA_WIDTH			( 24 )
+
+// Command list
+`define INT_CMD_READ			( 8'C0 )
+`define INT_CMD_WRITE			( 8'C0 )
+
+// Address mask in command byte
+`define INT_CMD_ADDR_MSK		( 8'hF0 )
+
+
 `endif // _DEFINES_VH
 
 

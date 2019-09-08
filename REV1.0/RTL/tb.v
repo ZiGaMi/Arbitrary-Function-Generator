@@ -157,7 +157,6 @@ task SPI_SEND_BYTE;
 		data <= ( data << 1 );
 		#( `SPI_CLOCK_TICK );
 		
-		
 		for ( i = 0; i < 16; i++  ) begin
 			
 			// Toggle clock
