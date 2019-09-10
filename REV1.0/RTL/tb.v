@@ -95,7 +95,7 @@ initial begin
 	spi_cs <= 0;
 	
 	#( `SPI_CLOCK_TICK );
-	SPI_SEND_BYTE(8'hC5);
+	SPI_SEND_BYTE(8'hC1);
 	#( `_1_us );
 	SPI_SEND_BYTE(8'h00);
 	#( `_1_us );
@@ -112,13 +112,27 @@ initial begin
 
 
 	#( `SPI_CLOCK_TICK );
-	SPI_SEND_BYTE(8'h75);
+	SPI_SEND_BYTE(8'h70);
 	#( `_1_us );
 	SPI_SEND_BYTE(8'h67);
 	#( `_1_us );
 	SPI_SEND_BYTE(8'h45);
 	#( `_1_us );
 	SPI_SEND_BYTE(8'h23);
+	spi_cs <= 1;	
+	
+	
+	#( `_100_us );
+	spi_cs <= 0;
+	
+	#( `SPI_CLOCK_TICK );
+	SPI_SEND_BYTE(8'hC0);
+	#( `_1_us );
+	SPI_SEND_BYTE(8'h00);
+	#( `_1_us );
+	SPI_SEND_BYTE(8'h00);
+	#( `_1_us );
+	SPI_SEND_BYTE(8'h00);
 	spi_cs <= 1;	
 	
 	

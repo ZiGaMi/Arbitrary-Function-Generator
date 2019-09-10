@@ -80,6 +80,38 @@ wire clk_p_2_w;
 
 
 
+///////////////////////////////////////////////////////////////////////////////////////
+//
+//		INTERFACE AND REGISTER FILE CONNECTIONS
+//
+///////////////////////////////////////////////////////////////////////////////////////
+
+// Address
+wire [(`RF_ADDR_WIDTH - 1):0] rf_addr_b;
+
+// Data
+wire [(`RF_DATA_WIDTH - 1):0] rf_data_i_b;
+wire [(`RF_DATA_WIDTH - 1):0] rf_data_o_b;
+
+// Read/Write enable 
+wire rf_re_w, rf_we_w;
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+//
+//		WAVEFORM CLOCK GENERATOR AND REGISTER FILE CONNECTIONS
+//
+///////////////////////////////////////////////////////////////////////////////////////
+
+// Prescaller direct access
+wire [(`RF_DATA_WIDTH - 1) :0] rf_psc2_b;
+
+
+
+
+
 
 /////////////////////////////////////////////////
 //
@@ -121,15 +153,38 @@ Interface INTERFACE_INST(
 	.int_cs_i					( int_cs_i ),
 	.int_miso_o					( int_miso_o ),
 	
-	.int_re_o					(  ),
-	.int_we_o					(  ),
-	.int_addr_o					(  ),
-	.int_data_o					(  ),
-	.int_data_i					( 24'h0123456 )
+	.int_re_o					( rf_re_w ),
+	.int_we_o					( rf_we_w ),
+	.int_addr_o					( rf_addr_b ),
+	.int_data_o					( rf_data_i_b ),
+	.int_data_i					( rf_data_o_b )
 );
 
 
 
+
+
+/////////////////////////////////////////////////
+//
+//		REGISTER FILE
+//
+/////////////////////////////////////////////////
+
+RegisterFile RF_INST(
+
+	.sys_clk_i					( sys_clk_i ),
+	.sys_rst_i					( sys_rst_i ),
+	
+	.rf_addr_i					( rf_addr_b ),
+	.rf_data_i					( rf_data_i_b ),
+	.rf_data_o					( rf_data_o_b ),
+	.rf_we_i					( rf_we_w ),
+	.rf_re_i					( rf_re_w ),
+	.rf_ack_o					( ),
+	
+	.rf_psc1_o					(  ),
+	.rf_psc2_o					( rf_psc2_b )	
+);
 
 
 
@@ -147,7 +202,7 @@ WaveformClock WC_INST(
 	.sys_rst_i					( sys_rst_i ),
 
 	.wc_en_2_i					( 1'b1 ),
-	.wc_psc_2_i					( 24'd2 ),
+	.wc_psc_2_i					( rf_psc2_b ),
 	.wc_clk_p_2_o				( clk_p_2_w )
 );
 

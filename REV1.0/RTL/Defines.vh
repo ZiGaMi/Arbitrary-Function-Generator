@@ -74,6 +74,12 @@
 // Register file data size
 `define RF_DATA_WIDTH			( 24 )
 
+// Registers addresses
+`define CTRL_ADDR				( 0 )
+`define PSC1_ADDR				( 1 )
+`define PSC2_ADDR				( 2 )
+
+
 
 
 /////////////////////////////////////////////////////////

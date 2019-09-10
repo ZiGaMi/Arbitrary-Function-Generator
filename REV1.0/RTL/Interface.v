@@ -109,7 +109,6 @@ reg [7:0] bit_cnt;
 
 // Register addr and data
 reg [(`RF_ADDR_WIDTH - 1):0] rf_addr;
-//reg [(`RF_DATA_WIDTH - 1):0] rf_data;
 
 
 
@@ -152,6 +151,7 @@ always @ (posedge sys_clk_i)
 			int_miso_o		<= 0;
 		end
 		
+		// Receive data on positive SCLK edge
 		else if ( clk_pos ) begin
 		
 			if ( bit_cnt <= 7 ) begin
@@ -159,18 +159,18 @@ always @ (posedge sys_clk_i)
 			end
 			
 			else begin
-				
-				// Receive data
 				data_rx 	<= (( data_rx << 1 ) | ( int_mosi_i & 1 ));
-				
-				// Transmit data
-				int_miso_o 	<= data_tx[( `RF_DATA_WIDTH - 1 )];
-				data_tx 	<= ( data_tx << 1 );
 			end
 			
 			// Increment bit counter
 			bit_cnt <= bit_cnt + 1;
 		end	
+		
+		// Change transmit data on negative SCLK edge
+		else if ( clk_neg ) begin			
+			int_miso_o 	<= data_tx[( `RF_DATA_WIDTH - 2 )];
+			data_tx 	<= ( data_tx << 1 );
+		end
 
 		else if ( cs_neg ) begin
 			bit_cnt <= 0;
