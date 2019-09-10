@@ -86,8 +86,8 @@
 `define INT_CMD_WIDTH			( 8 )
 
 // Command list
-`define INT_CMD_READ			( 8'C0 )
-`define INT_CMD_WRITE			( 8'C0 )
+`define INT_CMD_READ			( 8'hC0 )
+`define INT_CMD_WRITE			( 8'h70 )
 
 // Command mask in command byte
 `define INT_CMD_CMD_MSK			( 8'hF0 )

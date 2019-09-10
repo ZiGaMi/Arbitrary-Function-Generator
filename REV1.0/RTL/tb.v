@@ -95,11 +95,31 @@ initial begin
 	spi_cs <= 0;
 	
 	#( `SPI_CLOCK_TICK );
-	SPI_SEND_BYTE(8'hC0);
-	#( `_10_us );
-	SPI_SEND_BYTE(8'hAA);
-	
+	SPI_SEND_BYTE(8'hC5);
+	#( `_1_us );
+	SPI_SEND_BYTE(8'h00);
+	#( `_1_us );
+	SPI_SEND_BYTE(8'h00);
+	#( `_1_us );
+	SPI_SEND_BYTE(8'h00);
 	spi_cs <= 1;
+	
+	
+	// Send byte
+	#( `_100_us );
+	spi_cs <= 0;
+	
+
+
+	#( `SPI_CLOCK_TICK );
+	SPI_SEND_BYTE(8'h75);
+	#( `_1_us );
+	SPI_SEND_BYTE(8'h67);
+	#( `_1_us );
+	SPI_SEND_BYTE(8'h45);
+	#( `_1_us );
+	SPI_SEND_BYTE(8'h23);
+	spi_cs <= 1;	
 	
 	
 	// End simulation

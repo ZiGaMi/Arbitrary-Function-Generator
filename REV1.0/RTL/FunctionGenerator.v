@@ -125,7 +125,7 @@ Interface INTERFACE_INST(
 	.int_we_o					(  ),
 	.int_addr_o					(  ),
 	.int_data_o					(  ),
-	.int_data_i					(  )
+	.int_data_i					( 24'h0123456 )
 );
 
 

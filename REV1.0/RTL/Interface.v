@@ -32,6 +32,8 @@ module Interface(
 );
 
 
+
+
 /////////////////////////////////////////////////
 //
 //		Input / Outputs
@@ -74,6 +76,7 @@ input [(`RF_DATA_WIDTH-1):0] int_data_i;
 
 
 
+
 /////////////////////////////////////////////////
 //
 //		Registers / Wires
@@ -98,9 +101,6 @@ reg [(`INT_CMD_WIDTH - 1):0] cmd;
 // Reception data
 reg [(`RF_DATA_WIDTH - 1):0] data_rx;
 
-// Reception data valid
-reg data_rx_dv;
-
 // Transmition data
 reg [(`RF_DATA_WIDTH - 1):0] data_tx;
 
@@ -109,7 +109,10 @@ reg [7:0] bit_cnt;
 
 // Register addr and data
 reg [(`RF_ADDR_WIDTH - 1):0] rf_addr;
-reg [(`RF_DATA_WIDTH - 1):0] rf_data;
+//reg [(`RF_DATA_WIDTH - 1):0] rf_data;
+
+
+
 
 
 /////////////////////////////////////////////////
@@ -138,16 +141,15 @@ always @ (posedge sys_clk_i)
 		cs_b	<= cs_a;
 	end
 	
-	
 
 // Get command and data
 always @ (posedge sys_clk_i)
 	begin
-		if (( sys_rst_i == `RST_ACT ) || ( cs_neg )) begin
+		if ( sys_rst_i == `RST_ACT ) begin
 			cmd 			<= 0;
 			data_rx 		<= 0;
 			bit_cnt			<= 0;
-			data_rx_dv 		<= 0;
+			int_miso_o		<= 0;
 		end
 		
 		else if ( clk_pos ) begin
@@ -156,36 +158,34 @@ always @ (posedge sys_clk_i)
 				cmd <= (( cmd << 1 ) | ( int_mosi_i & 1 ));
 			end
 			
-		/*	else begin
-
-				case ( cmd & `INT_CMD_CMD_MSK )
-				
-					( `INT_CMD_WRITE ): begin
-					
-						// Receive data
-						data_rx <= (( data_rx << 1 ) | ( int_mosi_i & 1 ));					
-					end
-					
-				//	`INT_CMD_READ: begin
-				//	
-				//	end
-					
-				//	default: begin
-				//	end
-					
-				endcase 
-				
+			else begin
 				
 				// Receive data
-				//data_rx <= (( data_rx << 1 ) | ( int_mosi_i & 1 ));
+				data_rx 	<= (( data_rx << 1 ) | ( int_mosi_i & 1 ));
 				
 				// Transmit data
-				//int_miso_o <= data_tx[0];
+				int_miso_o 	<= data_tx[( `RF_DATA_WIDTH - 1 )];
+				data_tx 	<= ( data_tx << 1 );
 			end
-			*/
+			
 			// Increment bit counter
 			bit_cnt <= bit_cnt + 1;
-		end			
+		end	
+
+		else if ( cs_neg ) begin
+			bit_cnt <= 0;
+		end
+		
+		// Clear tx and rx buffers
+		else if ( cs_pos ) begin
+			data_rx <= 0;
+			data_tx <= 0;
+		end
+		
+		// Get data from RF
+		else if ( int_re_o ) begin
+			data_tx <= int_data_i;
+		end
 	end
 	
 	
@@ -193,8 +193,8 @@ always @ (posedge sys_clk_i)
 
 // Address and data lines
 assign int_addr_o = ( int_re_o || int_we_o ) ? ( rf_addr ) : ( 0 );
-assign int_data_o = ( int_we_o & rf_data );
-	
+assign int_data_o = ( int_we_o ) ? ( data_rx ) : ( 0 );
+
 	
 // Store data to register file
 always @ (posedge sys_clk_i)
@@ -205,25 +205,25 @@ always @ (posedge sys_clk_i)
 			rf_addr <= 0;
 		end
 		
+		// Get address 
 		else if ( clk_neg && ( bit_cnt == 8 )) begin
 			rf_addr 	<= ( cmd & `INT_CMD_ADDR_MSK );
-		//	int_re_o 	<= (( cmd & `INT_CMD_CMD_MSK ) ? (`INT_CMD_READ ) : (0) );
-		//	int_re_o 	<= (( cmd & `INT_CMD_CMD_MSK ) == `INT_CMD_WRITE );
+			
+			// In case of reading from RF prepare data to put on bus
+			int_re_o 	<= ((( cmd & `INT_CMD_CMD_MSK ) == ( `INT_CMD_READ )) ? ( clk_neg ) : (0) );
 		end
-	
-	
+		
+		// In case of writing to RF 
+		else if ( cs_neg ) begin
+			int_we_o <= ((( cmd & `INT_CMD_CMD_MSK ) == ( `INT_CMD_WRITE )) ? ( cs_neg ) : (0) );
+		end
+		
+		else begin
+			int_re_o <= 0;
+			int_we_o <= 0;
+		end
 	end
 
-
-
-
-
-
-
 endmodule /* module: Interface */
-
-
-
-
 
 
