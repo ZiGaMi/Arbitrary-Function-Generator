@@ -47,7 +47,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // Checking reception buffer time
-#define P_CHECK_TIM_time			( uint16_t ) ( 100u )		// ms
+#define P_CHECK_RX_BUFFER_TIME		( uint32_t ) ( 100ul )		// ms
 
 
 

@@ -30,11 +30,21 @@ void UartPinsInit(){
 	UART_port -> OSPEEDR |= (( 0x03u << ( 2ul * UART_RX_bp )) | ( 0x03u << ( 2ul * UART_TX_bp )));
 
 	// Alternative function
+#if ( UART_TX_bp > 7u )
+	UART_port -> AFR[1] &= ~( 0x0F << ( 4ul * ( UART_TX_bp - 8u )));
+	UART_port -> AFR[1] |=  ( UART_TX_afnum << ( 4ul * ( UART_TX_bp - 8u)));
+#else
 	UART_port -> AFR[0] &= ~( 0x0F << ( 4ul * UART_TX_bp ));
 	UART_port -> AFR[0] |=  ( UART_TX_afnum << ( 4ul * UART_TX_bp ));
+#endif
 
+#if ( UART_RX_bp > 7u )
+	UART_port -> AFR[1] &= ~( 0x0F << ( 4ul * ( UART_RX_bp - 8u )));
+	UART_port -> AFR[1] |=  ( UART_RX_afnum << ( 4ul * ( UART_RX_bp - 8u )));
+#else
 	UART_port -> AFR[0] &= ~( 0x0F << ( 4ul * UART_RX_bp ));
 	UART_port -> AFR[0] |=  ( UART_RX_afnum << ( 4ul * UART_RX_bp ));
+#endif
 }
 
 

@@ -95,14 +95,9 @@ void PcInterfaceParseData(uint8_t *rx_buf){
 // Check reception buffer check timeout flag
 uint8_t PcInterfaceGetRxBufCheckTimeoutFlag(){
 
-	static uint16_t sys_clk = 0u;
-
-	if (( SysGetTick() > sys_clk ) && ( ( SysGetTick() - sys_clk ) >= P_CHECK_TIM_time  ) ){
-		sys_clk = SysGetTick();
-		return 1;
-	}
-	else if (( SysGetTick() < sys_clk ) && ( ( 0x10000u - sys_clk + SysGetTick() ) >= P_CHECK_TIM_time )) {
-		sys_clk = SysGetTick();
+	static uint32_t now = 0u;
+	if ( ( uint32_t ) ( millis() - now ) >= P_CHECK_RX_BUFFER_TIME ){
+		now = millis();
 		return 1;
 	}
 	else{

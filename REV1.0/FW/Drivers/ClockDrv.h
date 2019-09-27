@@ -45,9 +45,5 @@ uint32_t millis(void);
 // Delay for mili seconds
 void delay_ms(uint16_t);
 
-// Get system clock ticks
-uint16_t SysGetTick(void);
-
-
 
 #endif /* DRIVERS_CLOCKDRV_H_ */

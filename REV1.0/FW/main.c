@@ -33,6 +33,7 @@ SOFTWARE.
 #include "Drivers/ClockDrv.h"
 #include "Drivers/LedDrv.h"
 #include "Drivers/UartDrv.h"
+#include "Drivers/SpiDrv.h"
 
 #include "Communication/PcInterface.h"
 
@@ -56,6 +57,8 @@ int main(void)
 	SysTickInit();
 	LedInit();
 	UartInit();
+	SpiInit();
+
 
 
 	while(1){
@@ -70,6 +73,8 @@ int main(void)
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		if ( PcInterfaceGetRxBufCheckTimeoutFlag() ){
+
+			LED_CH2_toggle();
 
 			if ( UartRxNewDataReady() ){
 				UartRxReintiDma();
@@ -88,9 +93,7 @@ int main(void)
 
 
 
-
 	}
-
 }
 
 

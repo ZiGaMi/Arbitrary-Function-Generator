@@ -46,39 +46,24 @@ void SysTickInit(void){
 }
 
 
-// System clock tick counter (for delay statement)
-volatile uint32_t sys_tick = 0;
-
 // System clock tick counter
-volatile uint16_t sys_clk_tick = 0;
+volatile uint32_t sys_clk_tick = 0ul;
 
-// System tick exception handler
+// System tick handler
 void SysTick_Handler(void){
-
-	// Decrement system tick
-	sys_tick--;
-
-	// Increment system clock tick
 	sys_clk_tick++;
 }
 
 
 // Get system tick ( miliseconds )
 uint32_t millis(void){
-	return sys_tick;
+	return sys_clk_tick;
 }
 
 
 // Delay for miliseconds
 void delay_ms(uint16_t ms){
-
-	// Fill and wait till count down
-	sys_tick = ms;
-	while ( millis() != 0u );
+	uint16_t sys_tick_prew = sys_clk_tick;
+	while( (uint32_t)( sys_clk_tick - sys_tick_prew ) <= ms );
 }
 
-
-// Get system ticks
-uint16_t SysGetTick(void){
-	return sys_clk_tick;
-}
